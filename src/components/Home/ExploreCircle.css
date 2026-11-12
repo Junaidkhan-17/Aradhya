@@ -1,0 +1,242 @@
+
+/* =====================================
+   EXPLORE CIRCLE
+===================================== */
+
+.explore-circle {
+  position: absolute;
+  right: 8%;
+  bottom: 55px;
+  z-index: 5;
+
+  width: 200px;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 50%;
+
+  background: rgba(225, 230, 230, 0.14);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  text-decoration: none;
+  color: #ffffff;
+
+  box-shadow:
+    inset 0 0 25px rgba(255, 255, 255, 0.04),
+    0 15px 40px rgba(0, 0, 0, 0.18);
+
+  isolation: isolate;
+  overflow: hidden;
+
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Hover Glass Effect */
+
+.explore-circle:hover {
+  background: rgba(225, 230, 230, 0.22);
+
+  border-color: rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, 0.08),
+    0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+/* =====================================
+   ROTATING SVG TEXT
+===================================== */
+
+.explore-circle-svg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+
+  animation: exploreCircleRotate 18s linear infinite;
+}
+
+.explore-circle-text {
+  fill: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================
+   CENTER ARROW
+===================================== */
+
+.explore-circle-center {
+  position: relative;
+  z-index: 3;
+
+  width: 62px;
+  height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(10, 30, 32, 0.72);
+  color: #ffffff;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+  transition:
+    background 0.4s ease,
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s ease;
+}
+
+.explore-circle:hover .explore-circle-center {
+  background: #15918e;
+
+  transform: rotate(45deg) scale(1.08);
+
+  box-shadow: 0 5px 25px rgba(21, 145, 142, 0.35);
+}
+
+/* =====================================
+   AMBIENT GLOW
+===================================== */
+
+.explore-circle-glow {
+  position: absolute;
+  inset: 25%;
+
+  z-index: -1;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  filter: blur(25px);
+  opacity: 0.4;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.explore-circle:hover .explore-circle-glow {
+  opacity: 0.9;
+  transform: scale(1.4);
+}
+
+/* =====================================
+   ROTATION ANIMATION
+===================================== */
+
+@keyframes exploreCircleRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 1200px) {
+  .explore-circle {
+    width: 175px;
+    height: 175px;
+    right: 6%;
+  }
+
+  .explore-circle-text {
+    font-size: 13px;
+  }
+
+  .explore-circle-center {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 991px) {
+  .explore-circle {
+    width: 150px;
+    height: 150px;
+    right: 5%;
+    bottom: 50px;
+  }
+
+  .explore-circle-text {
+    font-size: 11px;
+  }
+
+  .explore-circle-center {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .explore-circle {
+    width: 120px;
+    height: 120px;
+    right: 6%;
+    bottom: 125px;
+  }
+
+  .explore-circle-text {
+    font-size: 9px;
+  }
+
+  .explore-circle-center {
+    width: 40px;
+    height: 40px;
+  }
+
+  .explore-circle-center svg {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-circle {
+    width: 105px;
+    height: 105px;
+    right: 5%;
+    bottom: 130px;
+  }
+
+  .explore-circle-text {
+    font-size: 8px;
+  }
+
+  .explore-circle-center {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .explore-circle-svg {
+    animation: none;
+  }
+}

@@ -1,0 +1,494 @@
+
+/* =========================================
+   BUSINESS OVERVIEW SECTION
+========================================= */
+
+.business-overview-section {
+  width: 100%;
+  padding: 100px 3.6%;
+  background: #eef1f2;
+  overflow: hidden;
+}
+
+.business-overview-grid {
+  width: 100%;
+  display: grid;
+
+  grid-template-columns: 1.05fr 1.05fr 1.05fr;
+  grid-template-rows: 250px 295px;
+
+  gap: 16px;
+}
+
+/* =========================================
+   COMMON CARD STYLING
+========================================= */
+
+.overview-card {
+  position: relative;
+  min-width: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 280px;
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+}
+
+.overview-card:hover {
+  box-shadow: 0 18px 40px rgba(26, 49, 49, 0.09);
+}
+
+.overview-card-top {
+  position: relative;
+  height: 100%;
+  padding: 25px 23px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* =========================================
+   ICONS
+========================================= */
+
+.overview-icon {
+  width: 63px;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #edf1f1;
+}
+
+.jewellery-icon {
+  color: #e0a000;
+}
+
+.bank-icon {
+  color: #82959e;
+}
+
+.restaurant-icon {
+  color: #2563eb;
+}
+
+.overview-number {
+  position: absolute;
+  top: 25px;
+  right: 24px;
+
+  color: #43565b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.overview-card-info {
+  margin-top: 20px;
+}
+
+.overview-card-info h3 {
+  margin: 0 0 5px;
+
+  color: #35494b;
+  font-size: clamp(21px, 2vw, 28px);
+  font-weight: 700;
+}
+
+.overview-card-info h4 {
+  margin: 0 0 7px;
+
+  color: #1f292c;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.overview-card-info p {
+  max-width: 250px;
+  margin: 0;
+
+  color: #647175;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.overview-stat {
+  margin-top: auto;
+}
+
+.overview-stat span {
+  color: #101f22;
+  font-size: clamp(44px, 5vw, 59px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+/* =========================================
+   JEWELLERY CARD
+========================================= */
+
+.jewellery-card {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* =========================================
+   INTRODUCTION
+========================================= */
+
+.overview-introduction {
+  grid-column: 2;
+  grid-row: 1;
+
+  padding: 0 2px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.overview-eyebrow {
+  width: fit-content;
+  padding: 5px 9px;
+
+  background: #dceceb;
+  color: #318b87;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.overview-introduction h2 {
+  margin: 16px 0 12px;
+
+  color: #9aaead;
+
+  font-size: clamp(27px, 3vw, 39px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -1.4px;
+}
+
+.overview-introduction h2 span {
+  color: #a9b8b7;
+}
+
+.overview-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  width: fit-content;
+
+  color: #258c89;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition: gap 0.3s ease;
+}
+
+.overview-text-link:hover {
+  gap: 14px;
+}
+
+/* =========================================
+   PORTRAIT CARD
+========================================= */
+
+.overview-portrait-card {
+  position: relative;
+
+  grid-column: 3;
+  grid-row: 1;
+
+  overflow: hidden;
+  border-radius: 10px;
+  background: #233b3b;
+}
+
+.overview-portrait-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+
+  transition: transform 0.7s ease;
+}
+
+.overview-portrait-card:hover img {
+  transform: scale(1.07);
+}
+
+.portrait-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 25px 18px 16px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.65)
+  );
+
+  color: #fff;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.overview-portrait-card:hover .portrait-overlay {
+  opacity: 1;
+}
+
+.portrait-decoration {
+  position: absolute;
+  right: 14px;
+  bottom: 45px;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   COMMUNITY CARD
+========================================= */
+
+.overview-community-card {
+  position: relative;
+
+  grid-column: 1;
+  grid-row: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+  padding: 23px;
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  background: #258e8b;
+  color: #ffffff;
+}
+
+.community-background {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  opacity: 0.3;
+
+  transition: transform 0.8s ease;
+}
+
+.overview-community-card:hover .community-background {
+  transform: scale(1.08);
+}
+
+.community-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    145deg,
+    rgba(28, 153, 151, 0.507),
+    rgba(12, 105, 106, 0.495)
+  );
+}
+
+.community-top,
+.community-content,
+.community-sparkle {
+  position: relative;
+  z-index: 1;
+}
+
+.community-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.community-avatars span {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: -9px;
+
+  border: 2px solid #fff;
+  border-radius: 50%;
+
+  background: #e7eee9;
+  color: #276c68;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.community-avatars .community-plus {
+  background: #102e32;
+  color: #fff;
+  font-size: 19px;
+}
+
+.community-sparkle {
+  align-self: center;
+  color: #f4e4a8;
+}
+
+.community-content h3 {
+  margin: 0 0 8px;
+
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.community-content p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   BANK CARD
+========================================= */
+
+.bank-card {
+  grid-column: 2;
+  grid-row: 2;
+  height: 350px;
+}
+
+/* =========================================
+   RESTAURANT CARD
+========================================= */
+
+.restaurant-card {
+  grid-column: 3;
+  grid-row: 2;
+    height: 350px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (min-width: 1600px) {
+  .business-overview-section {
+    padding: 120px 5%;
+  }
+
+  .business-overview-grid {
+    grid-template-rows: 300px 340px;
+    gap: 20px;
+  }
+
+  .overview-card-top {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .business-overview-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .jewellery-card,
+  .overview-introduction,
+  .overview-portrait-card,
+  .overview-community-card,
+  .bank-card,
+  .restaurant-card {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 280px;
+  }
+
+  .overview-introduction {
+    justify-content: center;
+  }
+
+  .overview-portrait-card {
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 767px) {
+  .business-overview-section {
+    padding: 65px 5%;
+  }
+
+  .business-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .jewellery-card,
+  .overview-introduction,
+  .overview-portrait-card,
+  .overview-community-card,
+  .bank-card,
+  .restaurant-card {
+    min-height: 280px;
+  }
+
+  .overview-introduction {
+    padding: 15px 2px 25px;
+  }
+
+  .overview-introduction h2 {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+
+  .overview-portrait-card {
+    min-height: 340px;
+  }
+
+  .overview-card-top {
+    padding: 24px;
+  }
+
+  .overview-stat span {
+    font-size: 50px;
+  }
+
+  .overview-community-card {
+    min-height: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overview-card,
+  .overview-portrait-card img,
+  .community-background {
+    transition: none;
+  }
+}

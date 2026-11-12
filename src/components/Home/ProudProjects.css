@@ -1,0 +1,446 @@
+
+/* =========================================
+   PROUD PROJECTS SECTION
+========================================= */
+
+.proud-projects-section {
+  position: relative;
+  width: 100%;
+  padding: 95px 0 75px;
+  overflow: hidden;
+  background: #edf0f0;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.proud-projects-heading {
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 54px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.proud-projects-eyebrow {
+  display: inline-block;
+  padding: 6px 11px;
+  margin-bottom: 20px;
+
+  background: #ffffff;
+  color: #218c89;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.proud-projects-heading h2 {
+  margin: 0;
+
+  color: #102326;
+
+  font-size: clamp(37px, 4.2vw, 50px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -2px;
+}
+
+.proud-projects-heading h2 span {
+  color: #a6b7b6;
+}
+
+.proud-projects-heading p {
+  max-width: 480px;
+  margin: 17px 0 0;
+
+  color: #718080;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   CAROUSEL
+========================================= */
+
+.proud-projects-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  padding-left: 5.5%;
+}
+
+.proud-projects-swiper {
+  width: 100%;
+  overflow: visible !important;
+}
+
+.proud-projects-swiper .swiper-wrapper {
+  align-items: stretch;
+  transition-timing-function: linear !important;
+}
+
+.proud-projects-swiper .swiper-slide {
+  height: auto;
+}
+
+/* =========================================
+   PROJECT CARD
+========================================= */
+
+.proud-project-card {
+  position: relative;
+  width: 100%;
+  height: 445px;
+
+  overflow: hidden;
+  border-radius: 11px;
+
+  background: #18302f;
+  cursor: pointer;
+
+  isolation: isolate;
+}
+
+.proud-project-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.proud-project-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(8, 22, 22, 0.08) 0%,
+    rgba(8, 22, 22, 0.05) 35%,
+    rgba(8, 22, 22, 0.75) 100%
+  );
+
+  opacity: 0.35;
+
+  transition: opacity 0.6s ease;
+}
+
+/* =========================================
+   DEFAULT CONTENT
+========================================= */
+
+.proud-project-default {
+  position: absolute;
+  left: 32px;
+  bottom: 30px;
+
+  z-index: 2;
+
+  color: #ffffff;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s ease;
+}
+
+.proud-project-default span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.proud-project-default h3 {
+  margin: 9px 0 0;
+
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* =========================================
+   HOVER CONTENT
+========================================= */
+
+.proud-project-hover-content {
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: #ffffff;
+
+  opacity: 0;
+
+  transform: translateY(20px);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  background: linear-gradient(
+    180deg,
+    rgba(10, 27, 27, 0.12),
+    rgba(10, 27, 27, 0.85)
+  );
+}
+
+.project-hover-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-hover-top span:first-child {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.project-hover-line {
+  width: 50px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.project-hover-details {
+  max-width: 440px;
+}
+
+.project-hover-category {
+  color: #c8b17f;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.project-hover-details h3 {
+  margin: 12px 0 5px;
+
+  font-size: clamp(29px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.project-hover-details h4 {
+  margin: 0 0 12px;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.project-hover-details p {
+  max-width: 390px;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   HOVER INTERACTION
+========================================= */
+
+.proud-project-card:hover .proud-project-image {
+  transform: scale(1.09);
+}
+
+.proud-project-card:hover .proud-project-overlay {
+  opacity: 1;
+}
+
+.proud-project-card:hover .proud-project-default {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.proud-project-card:hover .proud-project-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keyboard accessibility */
+.proud-project-card:focus-within .proud-project-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.proud-projects-pagination {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 48px;
+  padding-right: 5.5%;
+}
+
+.proud-projects-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 8px;
+
+  margin: 0 !important;
+
+  border-radius: 20px;
+
+  background: #bdd2d1;
+  opacity: 0.8;
+
+  transition:
+    width 0.4s ease,
+    background 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.proud-projects-pagination .swiper-pagination-bullet-active {
+  width: 64px;
+  background: #218f8c;
+  opacity: 1;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (min-width: 1600px) {
+  .proud-project-card {
+    height: 620px;
+  }
+
+  .proud-projects-section {
+    padding-top: 115px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .proud-project-card {
+    height: 460px;
+  }
+
+  .proud-projects-heading h2 {
+    font-size: 43px;
+  }
+}
+
+@media (max-width: 767px) {
+  .proud-projects-section {
+    padding: 75px 0 55px;
+  }
+
+  .proud-projects-heading {
+    margin-bottom: 35px;
+  }
+
+  .proud-projects-heading h2 {
+    font-size: clamp(32px, 8vw, 42px);
+    letter-spacing: -1.5px;
+  }
+
+  .proud-projects-heading p {
+    max-width: 340px;
+    font-size: 13px;
+  }
+
+  .proud-projects-carousel-wrapper {
+    padding-left: 5%;
+  }
+
+  .proud-project-card {
+    height: 380px;
+  }
+
+  .proud-project-hover-content {
+    padding: 22px;
+  }
+
+  .proud-project-default {
+    left: 22px;
+    bottom: 22px;
+  }
+
+  .proud-project-default h3 {
+    font-size: 25px;
+  }
+
+  .project-hover-details h3 {
+    font-size: 30px;
+  }
+
+  .project-hover-details p {
+    font-size: 12px;
+  }
+
+  .proud-projects-pagination {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .proud-project-card {
+    height: 340px;
+  }
+
+  .proud-projects-heading h2 {
+    font-size: 33px;
+  }
+
+  .proud-projects-eyebrow {
+    font-size: 11px;
+  }
+
+  .proud-project-hover-content {
+    padding: 18px;
+  }
+
+  .project-hover-details h3 {
+    font-size: 27px;
+  }
+
+  .project-hover-details h4 {
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .proud-project-image,
+  .proud-project-hover-content,
+  .proud-project-default,
+  .proud-project-overlay {
+    transition: none;
+  }
+}
