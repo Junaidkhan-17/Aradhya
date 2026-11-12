@@ -47,7 +47,7 @@ const ExploreCircle = ({ href = "#about" }) => {
             startOffset="0%"
           >
             EXPLORE MORE  ✦  EXPLORE MORE  ✦
-            EXPLORE MORE  ✦ 
+            EXPLORE MORE  ✦ MORE ✦
           </textPath>
         </text>
       </svg>
