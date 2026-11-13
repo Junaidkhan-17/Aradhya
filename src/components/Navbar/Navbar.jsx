@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 import {
   IconButton,
@@ -13,7 +13,6 @@ import {
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 import "./Navbar.css";
-
 import aradhayLogo from "../../assets/logo.png";
 
 const navigationItems = [
@@ -72,17 +71,16 @@ const Navbar = () => {
         }}
       >
         <div className="navbar-inner">
-
           {/* Brand Logo */}
           <NavLink
             to="/"
             className="navbar-brand"
-            aria-label="Aradhay Group Home"
+            aria-label="Aradhya Group Home"
             onClick={closeMenu}
           >
             <img
               src={aradhayLogo}
-              alt="Aradhay Group of Business"
+              alt="Aradhya Group of Business"
             />
           </NavLink>
 
@@ -104,9 +102,7 @@ const Navbar = () => {
                 <NavLink
                   to={item.path}
                   className={({ isActive }) =>
-                    `navbar-link ${
-                      isActive ? "active" : ""
-                    }`
+                    `navbar-link ${isActive ? "active" : ""}`
                   }
                 >
                   {item.label}
@@ -121,7 +117,8 @@ const Navbar = () => {
             className="mobile-menu-button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
+            aria-controls="navbar-mobile-drawer"
+            onClick={() => setMenuOpen((prev) => !prev)}
           >
             {menuOpen ? (
               <X size={25} />
@@ -129,7 +126,6 @@ const Navbar = () => {
               <Menu size={25} />
             )}
           </IconButton>
-
         </div>
       </motion.header>
 
@@ -138,15 +134,25 @@ const Navbar = () => {
         anchor="right"
         open={menuOpen}
         onClose={closeMenu}
+        ModalProps={{
+          keepMounted: true,
+        }}
         PaperProps={{
+          id: "navbar-mobile-drawer",
           className: "navbar-mobile-drawer",
         }}
       >
         <div className="mobile-drawer-header">
-          <img
-            src={aradhayLogo}
-            alt="Aradhay Group"
-          />
+          <NavLink
+            to="/"
+            aria-label="Aradhya Group Home"
+            onClick={closeMenu}
+          >
+            <img
+              src={aradhayLogo}
+              alt="Aradhya Group"
+            />
+          </NavLink>
 
           <IconButton
             onClick={closeMenu}
@@ -156,29 +162,31 @@ const Navbar = () => {
           </IconButton>
         </div>
 
-        <List className="mobile-navigation-list">
-          {navigationItems.map((item, index) => (
-            <motion.div
-              key={item.path}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.1,
-              }}
-            >
-              <ListItemButton
-                component={NavLink}
-                to={item.path}
-                onClick={closeMenu}
-                className="mobile-navigation-link"
+        <nav aria-label="Mobile navigation">
+          <List className="mobile-navigation-list">
+            {navigationItems.map((item, index) => (
+              <motion.div
+                key={item.path}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.1,
+                }}
               >
-                <span>{item.label}</span>
-                <ArrowUpRight size={19} />
-              </ListItemButton>
-            </motion.div>
-          ))}
-        </List>
+                <ListItemButton
+                  component={NavLink}
+                  to={item.path}
+                  onClick={closeMenu}
+                  className="mobile-navigation-link"
+                >
+                  <span>{item.label}</span>
+                  <ArrowUpRight size={19} />
+                </ListItemButton>
+              </motion.div>
+            ))}
+          </List>
+        </nav>
 
         <div className="mobile-drawer-footer">
           ARADHAY GROUP OF BUSINESS

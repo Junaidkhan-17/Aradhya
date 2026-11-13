@@ -44,7 +44,6 @@ const cardVariants = {
 const BusinessOverview = () => {
   return (
     <section className="business-overview-section" id="about">
-
       <motion.div
         className="business-overview-grid"
         variants={containerVariants}
@@ -55,7 +54,6 @@ const BusinessOverview = () => {
           amount: 0.15,
         }}
       >
-
         {/* 01 - Jewellery Card */}
         <motion.article
           className="overview-card jewellery-card"
@@ -63,27 +61,24 @@ const BusinessOverview = () => {
           whileHover={{ y: -6 }}
         >
           <div className="overview-card-top">
-
             <div className="overview-icon jewellery-icon">
-              <Gem size={27} strokeWidth={1.8} />
+              <Gem size={37} strokeWidth={1.3} />
             </div>
 
             <span className="overview-number">01.</span>
 
             <div className="overview-card-info">
               <h3>Jewellery</h3>
-              <h4>Timeless Elegance</h4>
+              <h4>Craftsmanship & Tradition, Timeless Elegance</h4>
 
               <p>
-                Beautiful Designs · Premium
-                Craftsmanship
+                Gold & Silver · Traditional & Modern Designs
               </p>
             </div>
 
             <div className="overview-stat">
-              <span>100%</span>
+              <span>Year of establishment - 2016</span>
             </div>
-
           </div>
         </motion.article>
 
@@ -117,7 +112,7 @@ const BusinessOverview = () => {
         >
           <img
             src={bankingImage}
-            alt="Aradhay Group business leadership"
+            alt="Aradhya Group business leadership"
           />
 
           <div className="portrait-overlay">
@@ -135,11 +130,17 @@ const BusinessOverview = () => {
         >
           <img
             src={bankingImage}
-            alt="Aradhay Group architecture"
+            alt="Aradhya Group architecture"
             className="community-background"
           />
 
           <div className="community-overlay" />
+
+          <div className="community-eyebrow-container">
+            <span className="community-eyebrow">
+              COMMUNITY ENGAGEMENT
+            </span>
+          </div>
 
           <div className="community-top">
             <div className="community-avatars">
@@ -158,13 +159,20 @@ const BusinessOverview = () => {
 
           <div className="community-content">
             <h3>
-              Building Relationships.
+              Building Relationships. Growing Together.
               <br />
-              Creating Experiences.
+              Celebrating Together. Creating Experiences.
+            </h3>
+
+            <h3 className="community-number">
+              15+
+              <br />
+              Additional participants received silver coins.
             </h3>
 
             <p>
-              Every connection makes our journey meaningful.
+              Aradhya Jewellers organised a Rangoli competition,
+              recognising local talent with gold and silver coin prizes.
             </p>
           </div>
         </motion.article>
@@ -176,26 +184,27 @@ const BusinessOverview = () => {
           whileHover={{ y: -6 }}
         >
           <div className="overview-card-top">
-
             <div className="overview-icon bank-icon">
               <Landmark size={27} strokeWidth={1.8} />
             </div>
 
-            <span className="overview-number">02.</span>
+            <span className="overview-number">
+              02. FINANCIAL SERVICES
+            </span>
 
             <div className="overview-card-info">
-              <h3>Bank</h3>
-              <h4>Banking with Trust</h4>
+              <h3>Aradhya Financial Services</h3>
+              <h4>Savings & Financial Assistance. Banking with Trust.</h4>
 
               <p>
+                Fixed Deposits · Recurring Deposits · Gold Loans ·
                 Financial Solutions · Secure Future
               </p>
             </div>
 
             <div className="overview-stat">
-              <span>100k</span>
+              <span>₹5K – ₹50K Daily collection loan range</span>
             </div>
-
           </div>
         </motion.article>
 
@@ -206,29 +215,32 @@ const BusinessOverview = () => {
           whileHover={{ y: -6 }}
         >
           <div className="overview-card-top">
-
             <div className="overview-icon restaurant-icon">
               <UtensilsCrossed size={27} strokeWidth={1.8} />
             </div>
 
-            <span className="overview-number">03.</span>
+            <span className="overview-number">
+              03. HOSPITALITY
+            </span>
 
             <div className="overview-card-info">
               <h3>Bar & Restaurant</h3>
-              <h4>Exceptional Dining</h4>
+              <h4>Exceptional Dining & Hospitality</h4>
 
               <p>
-                Delicious Food · Memorable Moments
+                Delicious Food · Dining · Memorable Experiences
               </p>
             </div>
 
             <div className="overview-stat">
-              <span>100k</span>
+              <span>A Place to Connect.</span>
+              <br />
+              <span>
+                Hospitality-focused promotional positioning.
+              </span>
             </div>
-
           </div>
         </motion.article>
-
       </motion.div>
     </section>
   );

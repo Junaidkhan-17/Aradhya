@@ -8,9 +8,9 @@
   top: 24px;
   left: 2.5%;
   width: 95%;
-
   z-index: 1300;
 
+  box-sizing: border-box;
   padding: 0 25px;
 
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -42,6 +42,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  gap: 20px;
 }
 
 /* ===================================
@@ -51,13 +53,17 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  text-decoration: none;
   flex-shrink: 0;
+
+  text-decoration: none;
+  outline-offset: 5px;
 }
 
 .navbar-brand img {
+  display: block;
   width: 150px;
   height: 76px;
+
   object-fit: contain;
 
   transition: transform 0.4s ease;
@@ -74,8 +80,8 @@
 .navbar-navigation {
   display: flex;
   align-items: center;
-  gap: clamp(30px, 5vw, 75px);
 
+  gap: clamp(30px, 5vw, 75px);
   margin-right: 23%;
 }
 
@@ -132,16 +138,26 @@
 
 .mobile-menu-button.MuiIconButton-root {
   display: none;
+
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 10px;
 
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .mobile-menu-button.MuiIconButton-root:hover {
   background: rgba(213, 177, 118, 0.15);
   color: #e0bd83;
+  border-color: rgba(213, 177, 118, 0.6);
 }
 
 /* ===================================
@@ -149,34 +165,78 @@
 =================================== */
 
 .navbar-mobile-drawer.MuiDrawer-paper {
-  width: min(85%, 380px);
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  width: min(88vw, 380px);
+  height: 100%;
+  min-height: 100dvh;
+  max-height: 100dvh;
+
   padding: 25px;
 
   color: #fff;
   background: #122a25;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
+
+/* Drawer Header */
 
 .mobile-drawer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding-bottom: 30px;
+  gap: 15px;
+  padding-bottom: 25px;
+
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.mobile-drawer-header a {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
 .mobile-drawer-header img {
-  width: 130px;
+  display: block;
+
+  width: clamp(110px, 35vw, 130px);
   height: 65px;
+
   object-fit: contain;
 }
 
 .mobile-drawer-header .MuiIconButton-root {
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+
   color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease;
 }
+
+.mobile-drawer-header .MuiIconButton-root:hover {
+  color: #d5b176;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Drawer Navigation */
 
 .mobile-navigation-list {
   margin-top: 25px;
+  padding: 0;
 }
 
 .mobile-navigation-link.MuiListItemButton-root {
@@ -184,22 +244,40 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 18px 10px;
+  min-height: 58px;
+  padding: 16px 10px;
 
   color: #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 
-  font-size: 17px;
+  font-size: clamp(15px, 4vw, 17px);
+  font-weight: 500;
 
-  transition: all 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    padding 0.3s ease;
+}
+
+.mobile-navigation-link.MuiListItemButton-root svg {
+  flex-shrink: 0;
+  color: #d5b176;
+
+  transition: transform 0.3s ease;
 }
 
 .mobile-navigation-link.MuiListItemButton-root:hover,
-.mobile-navigation-link.active {
+.mobile-navigation-link.MuiListItemButton-root[aria-current="page"] {
   color: #d5b176;
   background: rgba(255, 255, 255, 0.05);
   padding-left: 18px;
 }
+
+.mobile-navigation-link.MuiListItemButton-root:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Drawer Footer */
 
 .mobile-drawer-footer {
   margin-top: auto;
@@ -207,31 +285,87 @@
 
   color: #d5b176;
   font-size: 10px;
+  font-weight: 500;
   letter-spacing: 2px;
+  line-height: 1.7;
 }
 
 /* ===================================
-   RESPONSIVE DESIGN
+   FOCUS ACCESSIBILITY
 =================================== */
 
-@media (max-width: 1100px) {
+.navbar-brand:focus-visible,
+.navbar-link:focus-visible,
+.mobile-menu-button.MuiIconButton-root:focus-visible,
+.mobile-navigation-link.MuiListItemButton-root:focus-visible {
+  outline: 2px solid #d5b176;
+  outline-offset: 4px;
+}
+
+/* ===================================
+   LARGE LAPTOP / SMALL DESKTOP
+=================================== */
+
+@media (max-width: 1200px) {
   .navbar-navigation {
+    gap: clamp(25px, 3.5vw, 42px);
     margin-right: 10%;
-    gap: 35px;
+  }
+
+  .navbar-brand img {
+    width: 140px;
   }
 }
+
+/* ===================================
+   TABLET
+=================================== */
+
+@media (max-width: 991px) and (min-width: 769px) {
+  .floating-navbar {
+    top: 18px;
+    left: 3%;
+    width: 94%;
+    padding: 0 20px;
+  }
+
+  .navbar-inner {
+    min-height: 68px;
+    gap: 15px;
+  }
+
+  .navbar-brand img {
+    width: 125px;
+    height: 65px;
+  }
+
+  .navbar-navigation {
+    gap: 24px;
+    margin-right: 0;
+  }
+
+  .navbar-link {
+    font-size: 15px;
+  }
+}
+
+/* ===================================
+   MOBILE NAVIGATION
+=================================== */
 
 @media (max-width: 768px) {
   .floating-navbar {
     top: 15px;
     left: 3%;
     width: 94%;
-    padding: 0 20px;
+
+    padding: 0 18px;
     border-radius: 14px;
   }
 
   .navbar-inner {
-    min-height: 75px;
+    min-height: 68px;
+    gap: 12px;
   }
 
   .navbar-brand img {
@@ -248,14 +382,22 @@
   }
 }
 
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
 @media (max-width: 480px) {
   .floating-navbar {
     top: 12px;
-    padding: 0 15px;
+    left: 3%;
+    width: 94%;
+
+    padding: 0 14px;
+    border-radius: 13px;
   }
 
   .navbar-inner {
-    min-height: 68px;
+    min-height: 62px;
   }
 
   .navbar-brand img {
@@ -263,7 +405,106 @@
     height: 56px;
   }
 
+  .mobile-menu-button.MuiIconButton-root {
+    width: 44px;
+    height: 44px;
+  }
+
   .navbar-mobile-drawer.MuiDrawer-paper {
+    width: min(90vw, 360px);
     padding: 20px;
+  }
+
+  .mobile-drawer-header {
+    padding-bottom: 20px;
+  }
+
+  .mobile-drawer-header img {
+    height: 58px;
+  }
+
+  .mobile-navigation-list {
+    margin-top: 20px;
+  }
+
+  .mobile-navigation-link.MuiListItemButton-root {
+    min-height: 56px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .mobile-drawer-footer {
+    padding-top: 28px;
+    font-size: 9px;
+    letter-spacing: 1.7px;
+  }
+}
+
+/* ===================================
+   VERY SMALL DEVICES
+=================================== */
+
+@media (max-width: 360px) {
+  .floating-navbar {
+    top: 10px;
+    padding: 0 11px;
+  }
+
+  .navbar-inner {
+    min-height: 58px;
+  }
+
+  .navbar-brand img {
+    width: 100px;
+    height: 52px;
+  }
+
+  .mobile-menu-button.MuiIconButton-root {
+    width: 42px;
+    height: 42px;
+  }
+
+  .navbar-mobile-drawer.MuiDrawer-paper {
+    padding: 17px;
+  }
+
+  .mobile-drawer-header img {
+    width: 105px;
+  }
+}
+
+/* ===================================
+   TOUCH DEVICE FEEDBACK
+=================================== */
+
+@media (hover: none) {
+  .navbar-brand:active img {
+    transform: scale(0.97);
+  }
+
+  .mobile-menu-button.MuiIconButton-root:active {
+    background: rgba(213, 177, 118, 0.18);
+    color: #e0bd83;
+  }
+
+  .mobile-navigation-link.MuiListItemButton-root:active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ===================================
+   REDUCED MOTION
+=================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-navbar,
+  .navbar-brand img,
+  .navbar-link,
+  .navbar-link-indicator,
+  .mobile-menu-button.MuiIconButton-root,
+  .mobile-navigation-link.MuiListItemButton-root,
+  .mobile-navigation-link.MuiListItemButton-root svg {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

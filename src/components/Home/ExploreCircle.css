@@ -34,13 +34,18 @@
   isolation: isolate;
   overflow: hidden;
 
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
   transition:
     background 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease;
 }
 
-/* Hover Glass Effect */
+/* =====================================
+   HOVER GLASS EFFECT
+===================================== */
 
 .explore-circle:hover {
   background: rgba(225, 230, 230, 0.22);
@@ -64,6 +69,7 @@
   height: 100%;
 
   overflow: visible;
+  pointer-events: none;
 
   animation: exploreCircleRotate 18s linear infinite;
 }
@@ -86,6 +92,7 @@
 
   width: 62px;
   height: 62px;
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -129,6 +136,8 @@
   filter: blur(25px);
   opacity: 0.4;
 
+  pointer-events: none;
+
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
@@ -154,7 +163,7 @@
 }
 
 /* =====================================
-   RESPONSIVE DESIGN
+   LARGE LAPTOP
 ===================================== */
 
 @media (max-width: 1200px) {
@@ -174,10 +183,15 @@
   }
 }
 
+/* =====================================
+   TABLET
+===================================== */
+
 @media (max-width: 991px) {
   .explore-circle {
     width: 150px;
     height: 150px;
+
     right: 5%;
     bottom: 50px;
   }
@@ -190,18 +204,29 @@
     width: 48px;
     height: 48px;
   }
+
+  .explore-circle-center svg {
+    width: 24px;
+    height: 24px;
+  }
 }
+
+/* =====================================
+   TABLET PORTRAIT
+===================================== */
 
 @media (max-width: 767px) {
   .explore-circle {
     width: 120px;
     height: 120px;
+
     right: 6%;
     bottom: 125px;
   }
 
   .explore-circle-text {
     font-size: 9px;
+    letter-spacing: 0.4px;
   }
 
   .explore-circle-center {
@@ -213,30 +238,141 @@
     width: 21px;
     height: 21px;
   }
+
+  .explore-circle-glow {
+    filter: blur(18px);
+  }
 }
 
-@media (max-width: 480px) {
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 575px) {
   .explore-circle {
     width: 105px;
     height: 105px;
+
     right: 5%;
-    bottom: 130px;
+    bottom: 115px;
   }
 
   .explore-circle-text {
     font-size: 8px;
+    letter-spacing: 0.3px;
   }
 
   .explore-circle-center {
     width: 35px;
     height: 35px;
   }
+
+  .explore-circle-center svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .explore-circle-glow {
+    inset: 27%;
+    filter: blur(15px);
+  }
 }
 
-/* Accessibility */
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 390px) {
+  .explore-circle {
+    width: 95px;
+    height: 95px;
+
+    right: 5%;
+    bottom: 110px;
+  }
+
+  .explore-circle-text {
+    font-size: 7.5px;
+    letter-spacing: 0.2px;
+  }
+
+  .explore-circle-center {
+    width: 32px;
+    height: 32px;
+  }
+
+  .explore-circle-center svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* =====================================
+   VERY SMALL MOBILE
+===================================== */
+
+@media (max-width: 340px) {
+  .explore-circle {
+    width: 84px;
+    height: 84px;
+
+    right: 4%;
+    bottom: 105px;
+  }
+
+  .explore-circle-text {
+    font-size: 6.5px;
+    letter-spacing: 0.15px;
+  }
+
+  .explore-circle-center {
+    width: 29px;
+    height: 29px;
+  }
+
+  .explore-circle-center svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =====================================
+   TOUCH DEVICE INTERACTION
+===================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  .explore-circle:active {
+    background: rgba(225, 230, 230, 0.24);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .explore-circle:active .explore-circle-center {
+    background: #15918e;
+    transform: rotate(30deg) scale(1.04);
+  }
+}
+
+/* =====================================
+   KEYBOARD ACCESSIBILITY
+===================================== */
+
+.explore-circle:focus-visible {
+  outline: 3px solid #d5b77e;
+  outline-offset: 5px;
+}
+
+/* =====================================
+   REDUCED MOTION
+===================================== */
 
 @media (prefers-reduced-motion: reduce) {
   .explore-circle-svg {
     animation: none;
+  }
+
+  .explore-circle,
+  .explore-circle-center,
+  .explore-circle-glow {
+    transition: none;
   }
 }

@@ -17,20 +17,22 @@ const projects = [
   {
     id: "jewellery",
     number: "01",
-    title: "Jewellery",
-    subtitle: "The Art of Timeless Elegance",
+    title: "Aradhya Jewellers",
+    subtitle:
+      "Craftsmanship Rooted in Tradition. The Art of Timeless Elegance.",
     description:
-      "Discover exceptional jewellery crafted with attention to detail, timeless beauty and a passion for fine craftsmanship.",
+      "Discover beautifully crafted gold and silver jewellery, wedding collections and special-occasion designs, backed by a focus on craftsmanship, hallmarking and customer trust.",
     image: jewelleryImage,
     category: "LUXURY JEWELLERY",
   },
   {
     id: "banking",
     number: "02",
-    title: "Banking",
-    subtitle: "Building Financial Confidence",
+    title: "Aradhya Financial & Banking Services",
+    subtitle:
+      "Savings & Financial Solutions | Fixed Deposits · Recurring Deposits · Gold Loans",
     description:
-      "Experience trusted banking solutions designed to support individuals, businesses and their financial aspirations.",
+      "Explore financial services covering savings, deposit facilities, gold-backed loans and financial assistance for individuals and local business owners.",
     image: bankingImage,
     category: "BANKING & FINANCE",
   },
@@ -38,9 +40,10 @@ const projects = [
     id: "restaurant",
     number: "03",
     title: "Bar & Restaurant",
-    subtitle: "Where Every Moment Becomes Special",
+    subtitle:
+      "Where Every Moment Becomes Special | Dining · Hospitality · Memorable Experiences",
     description:
-      "Explore exceptional dining, welcoming ambience and memorable experiences created around great food and hospitality.",
+      "Discover a welcoming dining atmosphere designed around enjoyable food, warm hospitality and memorable moments.",
     image: restaurantImage,
     category: "HOSPITALITY & DINING",
   },
@@ -52,7 +55,6 @@ const carouselProjects = [...projects, ...projects];
 const ProudProjects = () => {
   return (
     <section className="proud-projects-section" id="projects">
-
       {/* SECTION HEADING */}
       <motion.div
         className="proud-projects-heading"
@@ -69,14 +71,14 @@ const ProudProjects = () => {
         </span>
 
         <h2>
-          Breaking Boundaries,
+          Breaking Boundaries, Building Trust,
           <br />
-          Building <span>Dreams.</span>
+          Growing Through <span>Every Dream Business.</span>
         </h2>
 
         <p>
-          Discover the businesses, experiences and values
-          that define the Aradhay Group.
+          Discover the businesses, services and community initiatives
+          that shape the Aradhya journey.
         </p>
       </motion.div>
 
@@ -115,6 +117,10 @@ const ProudProjects = () => {
               slidesPerView: 1.08,
               spaceBetween: 14,
             },
+            375: {
+              slidesPerView: 1.12,
+              spaceBetween: 15,
+            },
             576: {
               slidesPerView: 1.25,
               spaceBetween: 18,
@@ -132,11 +138,10 @@ const ProudProjects = () => {
           {carouselProjects.map((project, index) => (
             <SwiperSlide key={`${project.id}-${index}`}>
               <article className="proud-project-card">
-
                 {/* PROJECT IMAGE */}
                 <img
                   src={project.image}
-                  alt={`${project.title} - Aradhay Group`}
+                  alt={`${project.title} - Aradhya Group`}
                   className="proud-project-image"
                   loading="lazy"
                 />
@@ -152,7 +157,6 @@ const ProudProjects = () => {
 
                 {/* HOVER CONTENT */}
                 <div className="proud-project-hover-content">
-
                   <div className="project-hover-top">
                     <span>{project.number} / 03</span>
                     <span className="project-hover-line" />
@@ -169,9 +173,7 @@ const ProudProjects = () => {
 
                     <p>{project.description}</p>
                   </div>
-
                 </div>
-
               </article>
             </SwiperSlide>
           ))}
@@ -180,7 +182,6 @@ const ProudProjects = () => {
         {/* CAROUSEL PAGINATION */}
         <div className="proud-projects-pagination" />
       </motion.div>
-
     </section>
   );
 };

@@ -10,14 +10,11 @@ import {
   Mail,
   MapPin,
   Award,
-  Send,
   Globe,
   Share2,
 } from "lucide-react";
 
 import "./Footer.css";
-
-// Replace with your actual logo path.
 import logo from "../../assets/logo.png";
 
 /* =========================================
@@ -146,22 +143,22 @@ const Footer = ({ onSubscribe }) => {
   ];
 
   const socialLinks = [
-  {
-    icon: Globe,
-    href: "https://www.instagram.com/",
-    label: "Instagram",
-  },
-  {
-    icon: Share2,
-    href: "https://www.facebook.com/",
-    label: "Facebook",
-  },
-  {
-    icon: Share2,
-    href: "https://www.linkedin.com/",
-    label: "LinkedIn",
-  },
-];
+    {
+      icon: Globe,
+      href: "https://www.instagram.com/",
+      label: "Instagram",
+    },
+    {
+      icon: Share2,
+      href: "https://www.facebook.com/",
+      label: "Facebook",
+    },
+    {
+      icon: Share2,
+      href: "https://www.linkedin.com/",
+      label: "LinkedIn",
+    },
+  ];
 
   /* =========================================
      BACK TO TOP
@@ -176,15 +173,12 @@ const Footer = ({ onSubscribe }) => {
 
   return (
     <footer className="aradhya-footer" id="footer">
-
       {/* BACKGROUND DECORATIONS */}
-
       <div className="footer-pattern footer-pattern-left" />
       <div className="footer-pattern footer-pattern-right" />
       <div className="footer-glow" />
 
       <div className="footer-inner">
-
         {/* =================================
             TOP FLOATING EMAIL CONTAINER
         ================================= */}
@@ -219,9 +213,7 @@ const Footer = ({ onSubscribe }) => {
             },
           }}
         >
-
           {/* LOGO */}
-
           <motion.a
             href="/"
             className="footer-top-logo"
@@ -231,29 +223,28 @@ const Footer = ({ onSubscribe }) => {
             transition={{
               duration: 0.35,
             }}
-            aria-label="Aradhay Group home"
+            aria-label="Aradhya Group home"
           >
-            <img
-              src={logo}
-              alt="Aradhay Group of Business"
-            />
+            <img src={logo} alt="Aradhya Group of Business" />
           </motion.a>
 
           {/* EMAIL FORM */}
-
           <form
             className="footer-email-form"
             onSubmit={handleSubmit(handleSubscription)}
             noValidate
           >
-
             <div className="footer-email-input-wrap">
-
               <input
                 type="email"
                 placeholder="Enter email"
                 aria-label="Enter your email address"
                 aria-invalid={Boolean(errors.email)}
+                aria-describedby={
+                  errors.email || submitMessage
+                    ? "footer-form-feedback"
+                    : undefined
+                }
                 {...register("email", {
                   required: "Please enter your email address.",
                   pattern: {
@@ -274,25 +265,27 @@ const Footer = ({ onSubscribe }) => {
                   scale: 0.96,
                 }}
               >
-                <span>
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </span>
+                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
 
                 <span className="footer-send-icon">
                   <ArrowUpRight size={21} />
                 </span>
               </motion.button>
-
             </div>
 
             {errors.email && (
-              <p className="footer-form-feedback error">
+              <p
+                id="footer-form-feedback"
+                className="footer-form-feedback error"
+                role="alert"
+              >
                 {errors.email.message}
               </p>
             )}
 
             {submitMessage && (
               <p
+                id={!errors.email ? "footer-form-feedback" : undefined}
                 className={`footer-form-feedback ${
                   submitMessage.includes("successfully")
                     ? "success"
@@ -303,9 +296,7 @@ const Footer = ({ onSubscribe }) => {
                 {submitMessage}
               </p>
             )}
-
           </form>
-
         </motion.div>
 
         {/* =================================
@@ -322,43 +313,35 @@ const Footer = ({ onSubscribe }) => {
             amount: 0.15,
           }}
         >
-
           {/* COLUMN 01 - BRAND */}
-
           <motion.div
             className="footer-brand-column"
             variants={itemVariants}
           >
-
             <motion.a
               href="/"
               className="footer-brand-logo"
               whileHover={{
                 scale: 1.04,
               }}
+              aria-label="Aradhya Group home"
             >
-              <img
-                src={logo}
-                alt="Aradhay Group"
-              />
+              <img src={logo} alt="Aradhya Group" />
             </motion.a>
 
             <motion.p
               className="footer-brand-description"
               variants={itemVariants}
             >
-              Developing personalized customer
-              journeys to increase satisfaction
-              and loyalty of our expansion.
+              Developing personalized customer journeys to increase
+              satisfaction and loyalty of our expansion.
             </motion.p>
 
             {/* AWARDS */}
-
             <motion.div
               className="footer-awards"
               variants={itemVariants}
             >
-
               <motion.div
                 className="footer-award-item"
                 whileHover={{
@@ -373,7 +356,6 @@ const Footer = ({ onSubscribe }) => {
                   <span>CLUTCH</span>
                   <small>AWARDS</small>
                 </div>
-
               </motion.div>
 
               <motion.div
@@ -389,13 +371,10 @@ const Footer = ({ onSubscribe }) => {
                   <strong>5</strong>
                   <span>AWARDS</span>
                 </div>
-
               </motion.div>
-
             </motion.div>
 
             {/* SOCIAL ICONS */}
-
             <div className="footer-social-links">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
@@ -431,24 +410,18 @@ const Footer = ({ onSubscribe }) => {
                 );
               })}
             </div>
-
           </motion.div>
 
           {/* COLUMN 02 - SERVICES */}
-
           <motion.div
             className="footer-link-column"
             variants={itemVariants}
           >
-
             <h3>Services</h3>
 
             <ul>
-              {services.map((item, index) => (
-                <motion.li
-                  key={item.label}
-                  variants={itemVariants}
-                >
+              {services.map((item) => (
+                <motion.li key={item.label} variants={itemVariants}>
                   <a href={item.href}>
                     <span>{item.label}</span>
                     <ArrowUpRight size={14} />
@@ -456,31 +429,23 @@ const Footer = ({ onSubscribe }) => {
                 </motion.li>
               ))}
             </ul>
-
           </motion.div>
 
           {/* COLUMN 03 - RESOURCES */}
-
           <motion.div
             className="footer-link-column"
             variants={itemVariants}
           >
-
             <h3>Resources</h3>
 
             <ul>
               {resources.map((item) => (
-                <motion.li
-                  key={item.label}
-                  variants={itemVariants}
-                >
+                <motion.li key={item.label} variants={itemVariants}>
                   <a href={item.href}>
                     <span>{item.label}</span>
 
                     {item.isNew && (
-                      <span className="footer-new-badge">
-                        NEW
-                      </span>
+                      <span className="footer-new-badge">NEW</span>
                     )}
 
                     <ArrowUpRight size={14} />
@@ -488,21 +453,18 @@ const Footer = ({ onSubscribe }) => {
                 </motion.li>
               ))}
             </ul>
-
           </motion.div>
 
           {/* COLUMN 04 - OFFICE */}
-
           <motion.div
             className="footer-office-column"
             variants={itemVariants}
           >
-
             <h3>Our Office</h3>
 
             <div className="footer-office-location">
               <MapPin size={16} />
-              <span>Nagpur, Maharashtra, India</span>
+              <span>Plot No. 318, Sahayog Apartment, Ganesh Nagar, Sharada Square, Nandanvan, Nagpur – 440024</span>
             </div>
 
             <a
@@ -510,7 +472,7 @@ const Footer = ({ onSubscribe }) => {
               className="footer-office-contact"
             >
               <Phone size={15} />
-              <span>P: +1 (009) 544-7818</span>
+              <span>Phone: 9372221118</span>
             </a>
 
             <a
@@ -524,9 +486,7 @@ const Footer = ({ onSubscribe }) => {
             <p className="footer-office-hours">
               Mon-Fri 10am-10pm
             </p>
-
           </motion.div>
-
         </motion.div>
 
         {/* =================================
@@ -550,7 +510,6 @@ const Footer = ({ onSubscribe }) => {
             duration: 0.8,
           }}
         >
-
           <p>
             © {currentYear} Aradhay Group. All Rights Reserved.
           </p>
@@ -574,11 +533,8 @@ const Footer = ({ onSubscribe }) => {
               <ArrowUp size={19} />
             </motion.button>
           </div>
-
         </motion.div>
-
       </div>
-
     </footer>
   );
 };

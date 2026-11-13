@@ -84,47 +84,57 @@
 
 .hero-text-content {
   width: 100%;
+  max-width: 950px;
 }
 
-/* Eyebrow */
+/* =========================================
+   EYEBROW
+========================================= */
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-
-  margin-bottom: 15px;
+  
+  margin-bottom: 55px;
 
   color: #d4b47c;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 .hero-eyebrow-line {
+  flex-shrink: 0;
   width: 35px;
   height: 1px;
   background: #d4b47c;
 }
 
-/* Heading */
+/* =========================================
+   HEADING
+========================================= */
 
 .hero-heading {
   margin: 0;
   color: #ffffff;
   font-family: "DM Sans", sans-serif;
-  font-size: clamp(35px, 7vw, 70px);
+  font-size: clamp(35px, 7vw, 80px);
   font-weight: 500;
   line-height: 1.04;
   letter-spacing: -4px;
+  overflow-wrap: break-word;
 }
 
 .hero-heading span {
-  color: #d5b77e;
+  color: #ffa600;
+  font-weight: 700;
 }
 
-/* Description */
+/* =========================================
+   DESCRIPTION
+========================================= */
 
 .hero-description {
   max-width: 660px;
@@ -134,10 +144,10 @@
 
   color: rgba(255, 255, 255, 0.76);
 
-  font-size: 17px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 1.65;
-  letter-spacing: 0.1px;
+  letter-spacing: 1px;
 }
 
 /* =========================================
@@ -146,6 +156,7 @@
 
 .hero-cta-button.MuiButton-root {
   min-width: 190px;
+  min-height: 53px;
   height: 53px;
 
   padding: 4px 5px 4px 24px;
@@ -178,6 +189,8 @@
 }
 
 .hero-cta-icon {
+  flex-shrink: 0;
+
   width: 43px;
   height: 43px;
 
@@ -222,6 +235,7 @@
 
   width: 82px;
   height: 82px;
+  min-width: 82px;
 
   padding: 3px;
 
@@ -274,7 +288,7 @@
 }
 
 /* =========================================
-   RESPONSIVE DESIGN
+   LARGE DESKTOP / LAPTOP
 ========================================= */
 
 @media (max-width: 1200px) {
@@ -293,14 +307,22 @@
   }
 }
 
+/* =========================================
+   TABLET LANDSCAPE
+========================================= */
+
 @media (max-width: 991px) {
   .hero-content-wrapper {
     padding-left: 5%;
     padding-right: 5%;
   }
 
+  .hero-content {
+    max-width: 760px;
+  }
+
   .hero-heading {
-    font-size: clamp(52px, 8vw, 75px);
+    font-size: clamp(48px, 7vw, 68px);
     letter-spacing: -2px;
   }
 
@@ -324,68 +346,142 @@
     width: 48px;
     height: 48px;
   }
+
+  .hero-bottom {
+    left: 5%;
+  }
+
+  .hero-thumbnail {
+    width: 74px;
+    height: 74px;
+    min-width: 74px;
+  }
 }
+
+/* =========================================
+   TABLET PORTRAIT
+========================================= */
 
 @media (max-width: 767px) {
   .hero-section,
   .hero-content-wrapper {
-    min-height: 850px;
+    min-height: 820px;
+    min-height: max(820px, 100svh);
   }
 
   .hero-content-wrapper {
-    padding: 160px 6% 200px;
+    padding: 135px 6% 190px;
     justify-content: flex-start;
+  }
+
+  .hero-content {
+    margin-top: 0;
+    max-width: 100%;
+  }
+
+  .hero-text-content {
+    max-width: 100%;
+  }
+
+  .hero-background-image {
+    background-position: center center;
   }
 
   .hero-gradient-overlay {
     background:
       linear-gradient(
         90deg,
-        rgba(7, 27, 27, 0.94),
-        rgba(7, 27, 27, 0.58)
+        rgba(7, 27, 27, 0.94) 0%,
+        rgba(7, 27, 27, 0.83) 50%,
+        rgba(7, 27, 27, 0.55) 100%
       ),
       linear-gradient(
         0deg,
-        rgba(7, 27, 27, 0.95) 0%,
-        transparent 75%
+        rgba(7, 27, 27, 0.98) 0%,
+        rgba(7, 27, 27, 0.45) 50%,
+        rgba(7, 27, 27, 0.25) 100%
       );
   }
 
-  .hero-heading {
-    font-size: clamp(43px, 9vw, 65px);
-    line-height: 1.1;
-    letter-spacing: -1.8px;
-  }
+  /* Eyebrow */
 
   .hero-eyebrow {
+    max-width: 100%;
+    gap: 9px;
+    margin-bottom: 17px;
+
     font-size: 10px;
+    line-height: 1.6;
     letter-spacing: 2px;
   }
 
-  .hero-description {
-    font-size: 14px;
-    line-height: 1.75;
+  .hero-eyebrow-line {
+    width: 25px;
   }
+
+  /* Heading */
+
+  .hero-heading {
+    font-size: clamp(42px, 8.5vw, 62px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+  }
+
+  /* Description */
+
+  .hero-description {
+    max-width: 560px;
+
+    margin-top: 20px;
+    margin-bottom: 25px;
+
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* CTA */
+
+  .hero-cta-button.MuiButton-root {
+    min-width: 185px;
+    min-height: 52px;
+    height: 52px;
+
+    padding-left: 20px;
+    gap: 15px;
+
+    font-size: 14px;
+  }
+
+  .hero-cta-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Thumbnails */
 
   .hero-bottom {
     left: 6%;
-    bottom: 45px;
+    bottom: 35px;
+  }
+
+  .hero-thumbnails {
+    gap: 10px;
+    margin-top: 0;
   }
 
   .hero-thumbnail {
     width: 68px;
     height: 68px;
+    min-width: 68px;
   }
 
-  .hero-thumbnails {
-    gap: 10px;
-  }
+  /* Explore Circle */
 
   .hero-explore-circle {
-    right: 7%;
-    bottom: 130px;
     width: 115px;
     height: 115px;
+    right: 6%;
+    bottom: 125px;
   }
 
   .explore-circle-text {
@@ -399,49 +495,301 @@
   }
 }
 
-@media (max-width: 480px) {
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 575px) {
   .hero-section,
   .hero-content-wrapper {
     min-height: 780px;
+    min-height: max(780px, 100svh);
   }
 
   .hero-content-wrapper {
-    padding-top: 145px;
+    padding: 125px 6% 180px;
   }
+
+  .hero-background-image {
+    background-position: 58% center;
+  }
+
+  .hero-gradient-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(7, 27, 27, 0.96) 0%,
+        rgba(7, 27, 27, 0.85) 58%,
+        rgba(7, 27, 27, 0.66) 100%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(7, 27, 27, 0.98) 0%,
+        rgba(7, 27, 27, 0.48) 65%,
+        rgba(7, 27, 27, 0.28) 100%
+      );
+  }
+
+  /* Eyebrow */
+
+  .hero-eyebrow {
+    max-width: 100%;
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    font-size: 9px;
+    letter-spacing: 1.7px;
+    line-height: 1.7;
+  }
+
+  .hero-eyebrow-line {
+    width: 21px;
+  }
+
+  /* Heading */
 
   .hero-heading {
-    font-size: clamp(39px, 10vw, 50px);
+    font-size: clamp(37px, 9.2vw, 49px);
+    line-height: 1.12;
+    letter-spacing: -1.6px;
   }
 
+  /* Description */
+
   .hero-description {
+    margin-top: 17px;
+    margin-bottom: 23px;
+
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+
+  /* CTA */
+
+  .hero-cta-button.MuiButton-root {
+    min-width: 175px;
+    min-height: 49px;
+    height: 49px;
+
+    padding: 3px 4px 3px 17px;
+    gap: 12px;
+
     font-size: 13px;
   }
 
-  .hero-explore-circle {
-    width: 95px;
-    height: 95px;
-    bottom: 135px;
+  .hero-cta-icon {
+    width: 41px;
+    height: 41px;
   }
 
-  .explore-circle-text {
-    font-size: 8px;
+  /* Thumbnail Navigation */
+
+  .hero-bottom {
+    left: 6%;
+    bottom: 27px;
   }
 
-  .explore-circle-center {
-    width: 32px;
-    height: 32px;
+  .hero-thumbnails {
+    gap: 9px;
+
   }
 
   .hero-thumbnail {
     width: 62px;
     height: 62px;
+    min-width: 62px;
+    padding: 3px;
+    border-radius: 7px;
+  }
+
+  /* Explore Circle */
+
+  .hero-explore-circle {
+    width: 98px;
+    height: 98px;
+
+    right: 6%;
+    bottom: 115px;
+  }
+
+  .explore-circle-text {
+    font-size: 8px;
+    gap: 4px;
+  }
+
+  .explore-circle-center {
+    width: 34px;
+    height: 34px;
   }
 }
 
-/* Accessibility */
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 390px) {
+  .hero-section,
+  .hero-content-wrapper {
+    min-height: 760px;
+    min-height: max(760px, 100svh);
+  }
+
+  .hero-content-wrapper {
+    padding: 115px 5.5% 175px;
+  }
+
+  .hero-heading {
+    font-size: clamp(34px, 9.1vw, 40px);
+    line-height: 1.13;
+    letter-spacing: -1.3px;
+  }
+
+  .hero-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.4px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .hero-bottom {
+    left: 5.5%;
+    bottom: 25px;
+  }
+
+  .hero-thumbnails {
+    gap: 8px;
+  }
+
+  .hero-thumbnail {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+  }
+
+  .hero-explore-circle {
+    width: 88px;
+    height: 88px;
+    right: 5%;
+    bottom: 110px;
+  }
+
+  .explore-circle-text {
+    font-size: 7px;
+  }
+
+  .explore-circle-center {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 340px) {
+  .hero-section,
+  .hero-content-wrapper {
+    min-height: 740px;
+    min-height: max(740px, 100svh);
+  }
+
+  .hero-content-wrapper {
+    padding: 105px 5% 165px;
+  }
+
+  .hero-heading {
+    font-size: 33px;
+    line-height: 1.14;
+    letter-spacing: -1.2px;
+  }
+
+  .hero-eyebrow {
+    font-size: 7.5px;
+    letter-spacing: 1.1px;
+  }
+
+  .hero-eyebrow-line {
+    width: 17px;
+  }
+
+  .hero-description {
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+
+  .hero-cta-button.MuiButton-root {
+    min-width: 165px;
+    min-height: 47px;
+    height: 47px;
+
+    padding-left: 15px;
+    font-size: 12px;
+  }
+
+  .hero-cta-icon {
+    width: 39px;
+    height: 39px;
+  }
+
+  .hero-thumbnail {
+    width: 53px;
+    height: 53px;
+    min-width: 53px;
+  }
+
+  .hero-thumbnails {
+    gap: 7px;
+  }
+
+  .hero-explore-circle {
+    width: 80px;
+    height: 80px;
+    right: 5%;
+    bottom: 105px;
+  }
+
+  .explore-circle-text {
+    font-size: 6.5px;
+  }
+
+  .explore-circle-center {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .explore-circle-text {
     animation: none;
+  }
+
+  .hero-thumbnail img,
+  .hero-cta-button.MuiButton-root,
+  .hero-cta-icon {
+    transition: none;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICE INTERACTIONS
+========================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-thumbnail:active {
+    border-color: #ffffff;
+  }
+
+  .hero-cta-button.MuiButton-root:active {
+    background: #20aaa5;
+    transform: scale(0.98);
   }
 }

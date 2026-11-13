@@ -57,16 +57,9 @@ const Testimonials = ({
   const hasReviews = reviews.length > 0;
 
   return (
-    <section
-      className="testimonials-section"
-      id="testimonials"
-    >
+    <section className="testimonials-section" id="testimonials">
       <div className="testimonials-grid">
-
-        {/* ==================================
-            LEFT IMAGE CONTAINER
-        ================================== */}
-
+        {/* LEFT IMAGE CONTAINER */}
         <motion.div
           className="testimonial-visual-panel"
           variants={panelVariants}
@@ -77,9 +70,7 @@ const Testimonials = ({
             amount: 0.2,
           }}
         >
-
           {/* Background Image */}
-
           <motion.img
             src={meetingImage}
             alt="Professional business collaboration"
@@ -98,11 +89,9 @@ const Testimonials = ({
           />
 
           {/* Image Overlay */}
-
           <div className="testimonial-image-overlay" />
 
           {/* Heading Content */}
-
           <motion.div
             className="testimonial-visual-heading"
             variants={contentVariants}
@@ -116,15 +105,11 @@ const Testimonials = ({
             </h2>
 
             <p>
-              Real experiences. Meaningful relationships.
-              Lasting impressions.
+              Real experiences. Meaningful relationships. Lasting impressions.
             </p>
           </motion.div>
 
-          {/* ==================================
-              FLOATING RATING BOX
-          ================================== */}
-
+          {/* FLOATING RATING BOX */}
           <motion.div
             className="testimonial-rating-wrapper"
             initial={{
@@ -155,18 +140,8 @@ const Testimonials = ({
               },
             }}
           >
-
-            {/* Inner Teal Container */}
-
             <div className="testimonial-rating-inner">
-
-              {/* Rating Number */}
-
-              <div className="testimonial-rating-number">
-                {rating}
-              </div>
-
-              {/* Rating Stars */}
+              <div className="testimonial-rating-number">{rating}</div>
 
               <div
                 className="testimonial-rating-stars"
@@ -182,22 +157,14 @@ const Testimonials = ({
                 ))}
               </div>
 
-              {/* Review Count */}
-
               <p className="testimonial-rating-label">
                 ({reviewCount}+ Clients Reviews)
               </p>
-
             </div>
-
           </motion.div>
-
         </motion.div>
 
-        {/* ==================================
-            RIGHT TESTIMONIAL CONTAINER
-        ================================== */}
-
+        {/* RIGHT TESTIMONIAL CONTAINER */}
         <motion.div
           className="testimonial-content-panel"
           variants={panelVariants}
@@ -212,9 +179,7 @@ const Testimonials = ({
             delay: 0.25,
           }}
         >
-
           {/* Decorative Quote Icon */}
-
           <motion.div
             className="testimonial-quote-icon"
             initial={{
@@ -236,12 +201,8 @@ const Testimonials = ({
             <Quote size={32} />
           </motion.div>
 
-          {/* ==================================
-              TESTIMONIAL CAROUSEL
-          ================================== */}
-
+          {/* TESTIMONIAL CAROUSEL */}
           {hasReviews ? (
-
             <Swiper
               className="testimonial-swiper"
               modules={[Autoplay, Pagination]}
@@ -266,15 +227,11 @@ const Testimonials = ({
                 setActiveIndex(swiper.realIndex);
               }}
             >
-
               {reviews.map((review, index) => (
-
                 <SwiperSlide
                   key={review._id || review.id || index}
                 >
-
                   <AnimatePresence mode="wait">
-
                     <motion.div
                       key={review._id || review.id || index}
                       className="testimonial-slide-content"
@@ -294,107 +251,77 @@ const Testimonials = ({
                         duration: 0.65,
                       }}
                     >
-
                       <span className="testimonial-slide-number">
                         CUSTOMER EXPERIENCE / 0{index + 1}
                       </span>
 
                       {/* Customer Review */}
-
                       <blockquote className="testimonial-quote">
                         {review.content}
                       </blockquote>
 
                       {/* Divider */}
-
                       <div className="testimonial-divider" />
 
                       {/* Customer Profile */}
-
                       <div className="testimonial-author">
-
                         {review.avatar ? (
-
                           <img
                             src={review.avatar}
                             alt={review.name}
                             className="testimonial-avatar"
                           />
-
                         ) : (
-
                           <div className="testimonial-avatar testimonial-avatar-fallback">
                             {review.name?.charAt(0) || "C"}
                           </div>
-
                         )}
 
                         <div className="testimonial-author-info">
                           <h3>{review.name}</h3>
                           <span>{review.designation}</span>
                         </div>
-
                       </div>
-
                     </motion.div>
-
                   </AnimatePresence>
-
                 </SwiperSlide>
-
               ))}
-
             </Swiper>
-
           ) : (
-
             /* Empty State Until Real Reviews Are Added */
-
             <div className="testimonial-empty-state">
-
               <span>OUR CUSTOMER EXPERIENCES</span>
 
-              <h3>
-                Every great relationship begins with trust.
-              </h3>
+              <h3>Every great relationship begins with trust.</h3>
 
               <p>
-                We believe in building lasting relationships
-                through meaningful experiences and exceptional service.
+                We believe in building lasting relationships through meaningful
+                experiences and exceptional service.
               </p>
 
               <div className="testimonial-divider" />
 
               <div className="testimonial-author">
-
                 <div className="testimonial-avatar testimonial-avatar-fallback">
                   A
                 </div>
 
                 <div className="testimonial-author-info">
-                  <h3>Aradhay Group</h3>
+                  <h3>Aradhaya Group</h3>
                   <span>Building Relationships Through Trust</span>
                 </div>
-
               </div>
-
             </div>
-
           )}
 
           {/* Pagination */}
-
           {hasReviews && reviews.length > 1 && (
-
             <div
               className="testimonial-pagination"
               aria-label={`Testimonial ${activeIndex + 1} of ${reviews.length}`}
             />
-
           )}
-
         </motion.div>
-
       </div>
     </section>
   );

@@ -14,37 +14,38 @@ const heroSlides = [
   {
     id: "banking",
     title: "Bank",
-    heading: "Leading the",
-    highlight: "Future of Banking.",
+    heading: "A Legacy of Trust.",
+    highlight: "A Future of Banking Growth.",
     description:
-      "Committed to delivering secure, reliable and innovative financial solutions that empower individuals and businesses. With a focus on trust, transparency and financial growth.",
+      "Aradhya Group brings together jewellery, financial services and personalised consultancy, with a commitment to customer relationships, quality and community development.",
     image: bankingImage,
     cta: "Get Started",
-    eyebrow: "The Bank for Your Success",
+    eyebrow: "BUILDING TRUST, CREATING OPPORTUNITIES.",
     path: "/bank",
   },
   {
     id: "jewellery",
     title: "Jewellery",
-    heading: "Elegance that",
-    highlight: "Defines Every Moment.",
+    heading: "Tradition in Every Design.",
+    highlight: "Beauty in Every Moment.",
     description:
-      "Discover exceptional craftsmanship, timeless designs and exquisite jewellery created to celebrate life's most beautiful moments.",
+      "Discover gold and silver jewellery featuring traditional and contemporary designs for weddings and special occasions. ARADHYA JEWELLERS brings together skilled craftsmanship, hallmarking and customer-focused service in Nagpur.",
     image: jewelleryImage,
     cta: "Explore Collection",
-    eyebrow: "Crafted for Generations",
+    eyebrow: "TRADITIONAL CRAFTSMANSHIP, TIMELESS DESIGNS.",
     path: "/jewellery",
   },
   {
     id: "restaurant",
     title: "Bar & Restaurant",
-    heading: "Where Every",
-    highlight: "Moment Becomes Special.",
+    heading: "A Taste of Excellence.",
+    highlight: "Moments to Remember.",
     description:
-      "Experience exceptional hospitality, inviting ambience and memorable dining experiences designed to bring people together.",
+      "Discover a welcoming dining experience where delightful flavours, elegant ambience and warm hospitality come together to make every visit special. Experience the pleasure of sharing great food and memorable moments.",
     image: restaurantImage,
     cta: "Explore More",
-    eyebrow: "An Experience Beyond Dining",
+    eyebrow:
+      "WHERE HOSPITALITY MEETS EXCELLENCE, AN EXPERIENCE BEYOND DINING.",
     path: "/bar-restaurant",
   },
 ];
@@ -67,7 +68,6 @@ const Hero = () => {
 
   return (
     <section className="hero-section" id="home">
-
       {/* Background Image */}
       <div className="hero-background">
         <AnimatePresence mode="sync">
@@ -92,9 +92,7 @@ const Hero = () => {
 
       {/* Main Hero Content */}
       <div className="hero-content-wrapper">
-
         <div className="hero-content">
-
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide.id}
@@ -107,7 +105,6 @@ const Hero = () => {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-
               <span className="hero-eyebrow">
                 <span className="hero-eyebrow-line" />
                 {currentSlide.eyebrow}
@@ -135,15 +132,12 @@ const Hero = () => {
               >
                 {currentSlide.cta}
               </Button>
-
             </motion.div>
           </AnimatePresence>
-
         </div>
 
         {/* Bottom Thumbnail Navigation */}
         <div className="hero-bottom">
-
           <div
             className="hero-thumbnails"
             role="group"
@@ -162,20 +156,15 @@ const Hero = () => {
                 whileHover={{ y: -6, scale: 1.04 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                />
+                <img src={slide.image} alt={slide.title} />
               </motion.button>
             ))}
           </div>
-
         </div>
+
         {/* Explore Circle */}
         <ExploreCircle href="#about" />
-        
       </div>
-
     </section>
   );
 };
