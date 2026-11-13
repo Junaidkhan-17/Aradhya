@@ -130,7 +130,7 @@
 .overview-stat {
   width: 100%;
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 2px;
 }
 
 .overview-stat span {
@@ -149,6 +149,7 @@
 .jewellery-card {
   grid-column: 1;
   grid-row: 1;
+
 }
 
 /* =========================================

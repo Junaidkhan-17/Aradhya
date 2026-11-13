@@ -16,9 +16,9 @@
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 18px;
 
-  background: rgba(30, 45, 45, 0.48);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(30, 45, 45, 0.389);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 
   transition:
     background 0.4s ease,
@@ -29,7 +29,7 @@
 /* Scrolled State */
 
 .floating-navbar.navbar-scrolled {
-  background: rgba(17, 34, 32, 0.88);
+  background: rgba(17, 34, 32, 0.408);
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
