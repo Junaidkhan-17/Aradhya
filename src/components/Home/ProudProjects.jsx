@@ -9,9 +9,10 @@ import "swiper/css/pagination";
 
 import "./ProudProjects.css";
 
-import bankingImage from "../../assets/bank.png";
-import jewelleryImage from "../../assets/jewellary.png";
-import restaurantImage from "../../assets/restaurent.png";
+import bankingbg from "../../assets/bankingbg.png";
+import jewellerbg from "../../assets/jewellerbg.png";
+import barbg from "../../assets/barbg.png";
+import astrologybg1 from "../../assets/astrologybg1.png";
 
 const projects = [
   {
@@ -22,7 +23,7 @@ const projects = [
       "Craftsmanship Rooted in Tradition. The Art of Timeless Elegance.",
     description:
       "Discover beautifully crafted gold and silver jewellery, wedding collections and special-occasion designs, backed by a focus on craftsmanship, hallmarking and customer trust.",
-    image: jewelleryImage,
+    image: jewellerbg,
     category: "LUXURY JEWELLERY",
   },
   {
@@ -33,7 +34,7 @@ const projects = [
       "Savings & Financial Solutions | Fixed Deposits · Recurring Deposits · Gold Loans",
     description:
       "Explore financial services covering savings, deposit facilities, gold-backed loans and financial assistance for individuals and local business owners.",
-    image: bankingImage,
+    image: bankingbg,
     category: "BANKING & FINANCE",
   },
   {
@@ -44,8 +45,19 @@ const projects = [
       "Where Every Moment Becomes Special | Dining · Hospitality · Memorable Experiences",
     description:
       "Discover a welcoming dining atmosphere designed around enjoyable food, warm hospitality and memorable moments.",
-    image: restaurantImage,
+    image: barbg,
     category: "HOSPITALITY & DINING",
+  },
+  {
+    id: "astrology",
+    number: "04",
+    title: "Astrology & Vastu",
+    subtitle:
+      "Traditional Wisdom, Personal Guidance | Kundli · Gemstones · Vastu Consultation",
+    description:
+      "Explore traditional astrological guidance with Falguni Jaiswal, covering Kundli and horoscope consultation, Vastu guidance, gemstone selection, planetary influences, Rashi and Nakshatra insights, and traditional astrological remedies.",
+    image: astrologybg1,
+    category: "ASTROLOGY & GEMSTONE CONSULTATION",
   },
 ];
 
@@ -137,7 +149,7 @@ const ProudProjects = () => {
         >
           {carouselProjects.map((project, index) => (
             <SwiperSlide key={`${project.id}-${index}`}>
-              <article className="proud-project-card">
+              <article className={`proud-project-card project-${project.id}`}>
                 {/* PROJECT IMAGE */}
                 <img
                   src={project.image}
@@ -158,7 +170,9 @@ const ProudProjects = () => {
                 {/* HOVER CONTENT */}
                 <div className="proud-project-hover-content">
                   <div className="project-hover-top">
-                    <span>{project.number} / 03</span>
+                    <span>
+                      {project.number} / {String(projects.length).padStart(2, "0")}
+                    </span>
                     <span className="project-hover-line" />
                   </div>
 

@@ -140,6 +140,11 @@ const Footer = ({ onSubscribe }) => {
       href: "/restaurant",
       isNew: true,
     },
+    {
+      label: "Astrology",
+      href: "/astrology",
+      isNew: true,
+    },
   ];
 
   const socialLinks = [

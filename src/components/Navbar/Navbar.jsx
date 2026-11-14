@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 import {
   IconButton,
@@ -14,6 +14,22 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 
 import "./Navbar.css";
 import aradhayLogo from "../../assets/logo.png";
+import logo1 from "../../assets/logo1.png";
+import logo2 from "../../assets/logo2.png";
+import logo3 from "../../assets/logo3.png";
+import logo4 from "../../assets/logo4.png";
+import logo5 from "../../assets/logo5.png";
+//import logo6 from "../../assets/logo6.png";
+//import logo7 from "../../assets/logo7.png";
+
+const logos = [
+  aradhayLogo,
+  logo1,
+  logo2,
+  logo3,
+  logo4,
+  logo5,
+];
 
 const navigationItems = [
   {
@@ -28,7 +44,64 @@ const navigationItems = [
     label: "Bar & Restaurant",
     path: "/bar-restaurant",
   },
+  {
+    label: "Astrology",
+    path: "/astrology",
+  },
 ];
+
+// Reusable animated logo component
+const LogoRotator = ({ mobile = false }) => {
+  const [activeLogo, setActiveLogo] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveLogo((prev) => (prev + 1) % logos.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div
+      className={`navbar-logo-rotator ${
+        mobile ? "mobile-logo-rotator" : ""
+      }`}
+      aria-label="Aradhya Group logos"
+    >
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={activeLogo}
+          src={logos[activeLogo]}
+          alt={`Aradhya Group logo ${activeLogo + 1}`}
+          className="rotating-navbar-logo"
+          initial={{
+            opacity: 0,
+            y: 28,
+            scale: 1.38,
+            filter: "blur(4px)",
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+          }}
+          exit={{
+            opacity: 0,
+            y: -28,
+            scale: 0.92,
+            filter: "blur(3px)",
+          }}
+          transition={{
+            duration: 1.25,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        />
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -71,6 +144,7 @@ const Navbar = () => {
         }}
       >
         <div className="navbar-inner">
+
           {/* Brand Logo */}
           <NavLink
             to="/"
@@ -78,10 +152,7 @@ const Navbar = () => {
             aria-label="Aradhya Group Home"
             onClick={closeMenu}
           >
-            <img
-              src={aradhayLogo}
-              alt="Aradhya Group of Business"
-            />
+            <LogoRotator />
           </NavLink>
 
           {/* Desktop Navigation */}
@@ -148,10 +219,7 @@ const Navbar = () => {
             aria-label="Aradhya Group Home"
             onClick={closeMenu}
           >
-            <img
-              src={aradhayLogo}
-              alt="Aradhya Group"
-            />
+            <LogoRotator mobile />
           </NavLink>
 
           <IconButton

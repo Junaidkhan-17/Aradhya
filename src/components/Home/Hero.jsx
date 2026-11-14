@@ -2,13 +2,17 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@mui/material";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import "./Hero.css";
 import ExploreCircle from "./ExploreCircle";
-import bankingImage from "../../assets/bank.png";
+
+import bankingbg from "../../assets/bankingbg.png";
 import jewelleryImage from "../../assets/jewellary.png";
-import restaurantImage from "../../assets/restaurent.png";
+import jewellerbg2 from "../../assets/jewellerbg2.png";
+import barbg from "../../assets/barbg.png";
+import astrologybg from "../../assets/astrologybg.png";
+import astrologybg1 from "../../assets/astrologybg1.png";
 
 const heroSlides = [
   {
@@ -18,7 +22,7 @@ const heroSlides = [
     highlight: "A Future of Banking Growth.",
     description:
       "Aradhya Group brings together jewellery, financial services and personalised consultancy, with a commitment to customer relationships, quality and community development.",
-    image: bankingImage,
+    image: bankingbg,
     cta: "Get Started",
     eyebrow: "BUILDING TRUST, CREATING OPPORTUNITIES.",
     path: "/bank",
@@ -30,7 +34,7 @@ const heroSlides = [
     highlight: "Beauty in Every Moment.",
     description:
       "Discover gold and silver jewellery featuring traditional and contemporary designs for weddings and special occasions. ARADHYA JEWELLERS brings together skilled craftsmanship, hallmarking and customer-focused service in Nagpur.",
-    image: jewelleryImage,
+    image: jewellerbg2,
     cta: "Explore Collection",
     eyebrow: "TRADITIONAL CRAFTSMANSHIP, TIMELESS DESIGNS.",
     path: "/jewellery",
@@ -42,11 +46,30 @@ const heroSlides = [
     highlight: "Moments to Remember.",
     description:
       "Discover a welcoming dining experience where delightful flavours, elegant ambience and warm hospitality come together to make every visit special. Experience the pleasure of sharing great food and memorable moments.",
-    image: restaurantImage,
+    image: barbg,
     cta: "Explore More",
     eyebrow:
       "WHERE HOSPITALITY MEETS EXCELLENCE, AN EXPERIENCE BEYOND DINING.",
     path: "/bar-restaurant",
+  },
+  {
+    id: "astrology",
+    title: "Astrology",
+    eyebrow: "ASTROLOGY & VASTU CONSULTATION",
+    heading: "Discover the Wisdom",
+    highlight: "of Astrology.",
+    subtitle: "Traditional Knowledge. Thoughtful Guidance.",
+    description:
+      "Explore traditional astrological guidance, gemstone consultation and Vastu insights with Falguni Jaiswal at Aradhya.",
+    highlights: [
+      "Kundli & Horoscope",
+      "Vastu Consultation",
+      "Gemstone Guidance",
+      "Graha, Rashi & Nakshatra",
+    ],
+    image: astrologybg1,
+    cta: "Explore Astrology",
+    path: "/astrology",
   },
 ];
 
@@ -62,7 +85,6 @@ const Hero = () => {
   };
 
   const handleExplore = () => {
-    // Navigate to the selected business page when its route is available.
     window.location.href = currentSlide.path;
   };
 
@@ -96,7 +118,11 @@ const Hero = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide.id}
-              className="hero-text-content"
+              className={`hero-text-content ${
+                currentSlide.id === "astrology"
+                  ? "hero-astrology-content"
+                  : ""
+              }`}
               initial={{ opacity: 0, y: 35 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -105,21 +131,51 @@ const Hero = () => {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <span className="hero-eyebrow">
-                <span className="hero-eyebrow-line" />
-                {currentSlide.eyebrow}
-              </span>
+              {/* Eyebrow */}
+              {currentSlide.eyebrow && (
+                <span className="hero-eyebrow">
+                  <span className="hero-eyebrow-line" />
+                  {currentSlide.eyebrow}
+                </span>
+              )}
 
+              {/* Main Heading */}
               <h1 className="hero-heading">
                 {currentSlide.heading}
                 <br />
                 <span>{currentSlide.highlight}</span>
               </h1>
 
+              {/* Optional Subtitle */}
+              {currentSlide.subtitle && (
+                <h2 className="hero-subtitle">
+                  {currentSlide.subtitle}
+                </h2>
+              )}
+
+              {/* Description */}
               <p className="hero-description">
                 {currentSlide.description}
               </p>
 
+              {/* Optional Service Highlights */}
+              {currentSlide.highlights && (
+                <div
+                  className="hero-highlights"
+                  aria-label="Astrology services"
+                >
+                  {currentSlide.highlights.map((item) => (
+                    <span
+                      className="hero-highlight-item"
+                      key={item}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* CTA Button */}
               <Button
                 className="hero-cta-button"
                 onClick={handleExplore}
