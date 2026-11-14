@@ -1007,3 +1007,49 @@
     background: rgba(213, 177, 118, 0.2);
   }
 }
+
+
+
+/* =========================================
+   MOBILE NAVBAR CLEARANCE FIX
+   Only affects tablet and mobile
+========================================= */
+
+@media (max-width: 767px) {
+  .hero-content-wrapper {
+    margin-top: 0;
+  }
+}
+
+/* =========================================
+   MOBILE SPACING
+========================================= */
+
+@media (max-width: 575px) {
+  .hero-content-wrapper {
+    margin-top: 0;
+    padding-top: 125px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 390px) {
+  .hero-content-wrapper {
+    margin-top: 0;
+    padding-top: 115px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 340px) {
+  .hero-content-wrapper {
+    margin-top: 0;
+    padding-top: 105px;
+  }
+}
