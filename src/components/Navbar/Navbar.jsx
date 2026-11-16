@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 
 import {
@@ -13,72 +13,31 @@ import {
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 import "./Navbar.css";
-import aradhayLogo from "../../assets/logo.png";
-import logo1 from "../../assets/logo1.png";
-import logo2 from "../../assets/logo2.png";
-import logo3 from "../../assets/logo3.png";
-import logo4 from "../../assets/logo4.png";
-import logo5 from "../../assets/logo5.png";
-//import logo6 from "../../assets/logo6.png";
-//import logo7 from "../../assets/logo7.png";
 
-const logos = [
-  aradhayLogo,
-  logo1,
-  logo2,
-  logo3,
-  logo4,
-  logo5,
-];
+import {
+  getNavbarConfig,
+  navigationItems,
+} from "./navbarConfig";
 
-const navigationItems = [
-  {
-    label: "Jewellery",
-    path: "/jewellery",
-  },
-  {
-    label: "Bank",
-    path: "/bank",
-  },
-  {
-    label: "Bar & Restaurant",
-    path: "/bar-restaurant",
-  },
-  {
-    label: "Astrology",
-    path: "/astrology",
-  },
-];
-
-// Reusable animated logo component
-const LogoRotator = ({ mobile = false }) => {
-  const [activeLogo, setActiveLogo] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveLogo((prev) => (prev + 1) % logos.length);
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, []);
-
+// Reusable animated business logo
+const LogoRotator = ({ logo, label, mobile = false }) => {
   return (
     <div
       className={`navbar-logo-rotator ${
         mobile ? "mobile-logo-rotator" : ""
       }`}
-      aria-label="Aradhya Group logos"
+      aria-label={`${label} logo`}
     >
       <AnimatePresence mode="wait">
         <motion.img
-          key={activeLogo}
-          src={logos[activeLogo]}
-          alt={`Aradhya Group logo ${activeLogo + 1}`}
+          key={logo}
+          src={logo}
+          alt={`${label} logo`}
           className="rotating-navbar-logo"
           initial={{
             opacity: 0,
             y: 28,
-            scale: 1.38,
+            scale: 1.15,
             filter: "blur(4px)",
           }}
           animate={{
@@ -94,7 +53,7 @@ const LogoRotator = ({ mobile = false }) => {
             filter: "blur(3px)",
           }}
           transition={{
-            duration: 1.25,
+            duration: 0.8,
             ease: [0.22, 1, 0.36, 1],
           }}
         />
@@ -106,6 +65,21 @@ const LogoRotator = ({ mobile = false }) => {
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const location = useLocation();
+
+  // Get the correct business configuration for the current route
+  const currentConfig = getNavbarConfig(location.pathname);
+  const currentTheme = currentConfig.theme;
+
+  // Shared theme variables for navbar and mobile drawer
+  const navbarStyle = {
+    "--navbar-background": currentTheme.background,
+    "--navbar-scrolled-background": currentTheme.scrolledBackground,
+    "--navbar-text": currentTheme.text,
+    "--navbar-accent": currentTheme.accent,
+    "--navbar-border": currentTheme.border,
+  };
 
   // Detect page scroll
   useEffect(() => {
@@ -129,12 +103,18 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
+  // Close drawer whenever the route changes
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   return (
     <>
       <motion.header
         className={`floating-navbar ${
           isScrolled ? "navbar-scrolled" : ""
         }`}
+        style={navbarStyle}
         initial={{ opacity: 0, y: -35 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -144,7 +124,6 @@ const Navbar = () => {
         }}
       >
         <div className="navbar-inner">
-
           {/* Brand Logo */}
           <NavLink
             to="/"
@@ -152,7 +131,10 @@ const Navbar = () => {
             aria-label="Aradhya Group Home"
             onClick={closeMenu}
           >
-            <LogoRotator />
+            <LogoRotator
+              logo={currentConfig.logo}
+              label={currentConfig.label}
+            />
           </NavLink>
 
           {/* Desktop Navigation */}
@@ -211,6 +193,7 @@ const Navbar = () => {
         PaperProps={{
           id: "navbar-mobile-drawer",
           className: "navbar-mobile-drawer",
+          style: navbarStyle,
         }}
       >
         <div className="mobile-drawer-header">
@@ -219,7 +202,11 @@ const Navbar = () => {
             aria-label="Aradhya Group Home"
             onClick={closeMenu}
           >
-            <LogoRotator mobile />
+            <LogoRotator
+              logo={currentConfig.logo}
+              label={currentConfig.label}
+              mobile
+            />
           </NavLink>
 
           <IconButton
@@ -257,7 +244,7 @@ const Navbar = () => {
         </nav>
 
         <div className="mobile-drawer-footer">
-          ARADHAY GROUP OF BUSINESS
+          ARADHYA GROUP OF BUSINESS
         </div>
       </Drawer>
     </>

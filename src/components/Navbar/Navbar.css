@@ -116,10 +116,11 @@
   align-items: center;
 
   padding: 12px 0;
-
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+    color: #fff;
+  font-size: 23px;
 
   text-decoration: none;
   white-space: nowrap;
@@ -368,6 +369,9 @@
 
   .navbar-link {
     font-size: 15px;
+    font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
   }
 }
 
@@ -528,5 +532,128 @@
   .mobile-navigation-link.MuiListItemButton-root svg {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* ===================================
+   DYNAMIC BUSINESS NAVBAR THEME
+=================================== */
+
+/* Floating Navbar */
+
+.floating-navbar {
+  background: var(--navbar-background);
+  border-color: var(--navbar-border);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+/* Scrolled Navbar */
+
+.floating-navbar.navbar-scrolled {
+  background: var(--navbar-scrolled-background);
+  border-color: var(--navbar-border);
+}
+
+/* Navigation Links */
+
+.navbar-link {
+  color: var(--navbar-text);
+    font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+  color: var(--navbar-accent);
+}
+
+/* Navigation Indicator */
+
+.navbar-link-indicator {
+  background: var(--navbar-accent);
+}
+
+/* Mobile Menu Button */
+
+.mobile-menu-button.MuiIconButton-root {
+  color: var(--navbar-text);
+  border-color: var(--navbar-border);
+}
+
+.mobile-menu-button.MuiIconButton-root:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--navbar-accent);
+  border-color: var(--navbar-accent);
+}
+
+/* Mobile Drawer */
+
+.navbar-mobile-drawer.MuiDrawer-paper {
+  background: var(--navbar-scrolled-background);
+  color: var(--navbar-text);
+}
+
+/* Drawer Header */
+
+.mobile-drawer-header {
+  border-bottom-color: var(--navbar-border);
+}
+
+.mobile-drawer-header .MuiIconButton-root {
+  color: var(--navbar-text);
+  border-color: var(--navbar-border);
+}
+
+.mobile-drawer-header .MuiIconButton-root:hover {
+  color: var(--navbar-accent);
+}
+
+/* Mobile Navigation Links */
+
+.mobile-navigation-link.MuiListItemButton-root {
+  color: var(--navbar-text);
+  border-bottom-color: var(--navbar-border);
+}
+
+.mobile-navigation-link.MuiListItemButton-root svg {
+  color: var(--navbar-accent);
+}
+
+.mobile-navigation-link.MuiListItemButton-root:hover,
+.mobile-navigation-link.MuiListItemButton-root[aria-current="page"] {
+  color: var(--navbar-accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Drawer Footer */
+
+.mobile-drawer-footer {
+  color: var(--navbar-accent);
+}
+
+/* Focus Accessibility */
+
+.navbar-brand:focus-visible,
+.navbar-link:focus-visible,
+.mobile-menu-button.MuiIconButton-root:focus-visible,
+.mobile-navigation-link.MuiListItemButton-root:focus-visible {
+  outline-color: var(--navbar-accent);
+}
+
+/* Touch Device Feedback */
+
+@media (hover: none) {
+  .mobile-menu-button.MuiIconButton-root:active {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--navbar-accent);
+  }
+
+  .mobile-navigation-link.MuiListItemButton-root:active {
+    background: rgba(255, 255, 255, 0.12);
   }
 }
