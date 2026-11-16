@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import "./Hero.css";
 import ExploreCircle from "./ExploreCircle";
 
-import bankingbg from "../../assets/bankingbg.png";
+import bankbg1 from "../../assets/bankbg1.png";
 import jewelleryImage from "../../assets/jewellary.png";
 import jewellerbg2 from "../../assets/jewellerbg2.png";
 import barbg from "../../assets/barbg.png";
@@ -22,7 +22,7 @@ const heroSlides = [
     highlight: "A Future of Banking Growth.",
     description:
       "Aradhya Group brings together jewellery, financial services and personalised consultancy, with a commitment to customer relationships, quality and community development.",
-    image: bankingbg,
+    image: bankbg1,
     cta: "Get Started",
     eyebrow: "BUILDING TRUST, CREATING OPPORTUNITIES.",
     path: "/bank",

@@ -10,7 +10,7 @@ import {
 
 import "./BusinessOverview.css";
 
-import bankingImage from "../../assets/bank.png";
+import bankbg1 from "../../assets/bankbg1.png";
 import jewelleryImage from "../../assets/jewellary.png";
 import restaurantImage from "../../assets/restaurent.png";
 
@@ -111,7 +111,7 @@ const BusinessOverview = () => {
           whileHover={{ scale: 1.025 }}
         >
           <img
-            src={bankingImage}
+            src={bankbg1}
             alt="Aradhya Group business leadership"
           />
 
@@ -129,7 +129,7 @@ const BusinessOverview = () => {
           whileHover={{ y: -6 }}
         >
           <img
-            src={bankingImage}
+            src={bankbg1}
             alt="Aradhya Group architecture"
             className="community-background"
           />

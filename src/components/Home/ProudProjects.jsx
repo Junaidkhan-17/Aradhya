@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 
 import "./ProudProjects.css";
 
-import bankingbg from "../../assets/bankingbg.png";
+import bankbg1 from "../../assets/bankbg1.png";
 import jewellerbg from "../../assets/jewellerbg.png";
 import barbg from "../../assets/barbg.png";
 import astrologybg1 from "../../assets/astrologybg1.png";
@@ -34,7 +34,7 @@ const projects = [
       "Savings & Financial Solutions | Fixed Deposits · Recurring Deposits · Gold Loans",
     description:
       "Explore financial services covering savings, deposit facilities, gold-backed loans and financial assistance for individuals and local business owners.",
-    image: bankingbg,
+    image: bankbg1,
     category: "BANKING & FINANCE",
   },
   {

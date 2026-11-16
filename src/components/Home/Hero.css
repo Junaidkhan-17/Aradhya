@@ -122,9 +122,10 @@
   margin: 0;
 
   color: #ffffff;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Montserrat";
+  font-display: swap;
   font-size: clamp(35px, 7vw, 80px);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.04;
   letter-spacing: -4px;
 
@@ -144,7 +145,7 @@
   margin: 15px 0 0;
 
   color: #e4c58e;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Montserrat";
   font-size: clamp(16px, 1.6vw, 22px);
   font-weight: 500;
   line-height: 1.4;
@@ -160,11 +161,11 @@
 
   margin-top: 22px;
   margin-bottom: 28px;
-
+  font-family: "Montserrat";
   color: rgba(255, 255, 255, 0.76);
-
-  font-size: 25px;
-  font-weight: 400;
+  font-style: normal;
+  font-size: 27px;
+  font-weight: 400 !important;
   line-height: 1.65;
   letter-spacing: 1px;
 }
@@ -471,6 +472,7 @@
   }
 
   .hero-content-wrapper {
+    margin-top: 0;
     padding: 135px 6% 190px;
     justify-content: flex-start;
   }
@@ -511,7 +513,9 @@
     gap: 9px;
     margin-bottom: 17px;
 
+    font-family: "Montserrat";
     font-size: 10px;
+    font-weight: 600;
     line-height: 1.6;
     letter-spacing: 2px;
   }
@@ -523,21 +527,31 @@
   /* Heading */
 
   .hero-heading {
+    font-family: "Montserrat";
     font-size: clamp(42px, 8.5vw, 62px);
+    font-weight: 700;
     line-height: 1.1;
     letter-spacing: -2px;
+  }
+
+  .hero-heading span {
+    font-family: "Montserrat";
+    font-weight: 700;
   }
 
   /* Description */
 
   .hero-description {
     max-width: 560px;
-
     margin-top: 20px;
     margin-bottom: 25px;
 
+    font-family: "Montserrat";
+    font-style: normal;
     font-size: 15px;
+    font-weight: 400 !important;
     line-height: 1.7;
+    letter-spacing: 0.3px;
   }
 
   /* Astrology */
@@ -547,20 +561,28 @@
   }
 
   .hero-astrology-content .hero-heading {
+    font-family: "Montserrat";
     font-size: clamp(39px, 7.5vw, 55px);
+    font-weight: 700;
     line-height: 1.12;
     letter-spacing: -1.8px;
   }
 
   .hero-subtitle {
     margin-top: 12px;
+
+    font-family: "Montserrat";
     font-size: 16px;
+    font-weight: 500;
   }
 
   .hero-astrology-content .hero-description {
     margin-top: 15px;
     margin-bottom: 17px;
+
+    font-family: "Montserrat";
     font-size: 14px;
+    font-weight: 400 !important;
     line-height: 1.65;
   }
 
@@ -571,7 +593,10 @@
 
   .hero-highlight-item {
     padding: 7px 10px;
+
+    font-family: "Montserrat";
     font-size: 11px;
+    font-weight: 500;
   }
 
   /* CTA */
@@ -584,7 +609,9 @@
     padding-left: 20px;
     gap: 15px;
 
+    font-family: "DM Sans", sans-serif;
     font-size: 14px;
+    font-weight: 600;
   }
 
   .hero-cta-icon {
@@ -642,6 +669,7 @@
   }
 
   .hero-content-wrapper {
+    margin-top: 0;
     padding: 125px 6% 180px;
   }
 
@@ -670,10 +698,11 @@
   .hero-eyebrow {
     max-width: 100%;
     gap: 8px;
-
     margin-bottom: 15px;
 
+    font-family: "Montserrat";
     font-size: 9px;
+    font-weight: 600;
     letter-spacing: 1.7px;
     line-height: 1.7;
   }
@@ -685,9 +714,16 @@
   /* Heading */
 
   .hero-heading {
+    font-family: "Montserrat";
     font-size: clamp(37px, 9.2vw, 49px);
+    font-weight: 700;
     line-height: 1.12;
     letter-spacing: -1.6px;
+  }
+
+  .hero-heading span {
+    font-family: "Montserrat";
+    font-weight: 700;
   }
 
   /* Description */
@@ -696,8 +732,11 @@
     margin-top: 17px;
     margin-bottom: 23px;
 
+    font-family: "Montserrat";
     font-size: 13.5px;
+    font-weight: 400 !important;
     line-height: 1.75;
+    letter-spacing: 0.3px;
   }
 
   /* Astrology */
@@ -709,20 +748,28 @@
   }
 
   .hero-astrology-content .hero-heading {
+    font-family: "Montserrat";
     font-size: clamp(34px, 8.2vw, 44px);
+    font-weight: 700;
     line-height: 1.13;
     letter-spacing: -1.4px;
   }
 
   .hero-subtitle {
     margin-top: 10px;
+
+    font-family: "Montserrat";
     font-size: 14px;
+    font-weight: 500;
   }
 
   .hero-astrology-content .hero-description {
     margin-top: 14px;
     margin-bottom: 17px;
+
+    font-family: "Montserrat";
     font-size: 13px;
+    font-weight: 400 !important;
     line-height: 1.65;
   }
 
@@ -733,7 +780,10 @@
 
   .hero-highlight-item {
     padding: 6px 9px;
+
+    font-family: "Montserrat";
     font-size: 10px;
+    font-weight: 500;
   }
 
   /* CTA */
@@ -746,7 +796,9 @@
     padding: 3px 4px 3px 17px;
     gap: 12px;
 
+    font-family: "DM Sans", sans-serif;
     font-size: 13px;
+    font-weight: 600;
   }
 
   .hero-cta-icon {
@@ -806,27 +858,35 @@
   }
 
   .hero-content-wrapper {
+    margin-top: 0;
     padding: 115px 5.5% 175px;
   }
 
   .hero-heading {
+    font-family: "Montserrat";
     font-size: clamp(34px, 9.1vw, 40px);
+    font-weight: 700;
     line-height: 1.13;
     letter-spacing: -1.3px;
   }
 
   .hero-eyebrow {
+    font-family: "Montserrat";
     font-size: 8px;
     letter-spacing: 1.4px;
   }
 
   .hero-description {
+    font-family: "Montserrat";
     font-size: 13px;
+    font-weight: 400 !important;
     line-height: 1.7;
   }
 
   .hero-astrology-content .hero-heading {
+    font-family: "Montserrat";
     font-size: clamp(32px, 8.5vw, 37px);
+    font-weight: 700;
   }
 
   .hero-astrology-content .hero-eyebrow {
@@ -835,14 +895,18 @@
   }
 
   .hero-subtitle {
+    font-family: "Montserrat";
     font-size: 13px;
   }
 
   .hero-astrology-content .hero-description {
+    font-family: "Montserrat";
     font-size: 12.5px;
+    font-weight: 400 !important;
   }
 
   .hero-highlight-item {
+    font-family: "Montserrat";
     padding: 6px 8px;
     font-size: 9px;
   }
@@ -879,6 +943,7 @@
   }
 }
 
+
 /* =========================================
    VERY SMALL MOBILE
 ========================================= */
@@ -891,16 +956,20 @@
   }
 
   .hero-content-wrapper {
+    margin-top: 0;
     padding: 105px 5% 165px;
   }
 
   .hero-heading {
+    font-family: "Montserrat";
     font-size: 33px;
+    font-weight: 700;
     line-height: 1.14;
     letter-spacing: -1.2px;
   }
 
   .hero-eyebrow {
+    font-family: "Montserrat";
     font-size: 7.5px;
     letter-spacing: 1.1px;
   }
@@ -910,23 +979,31 @@
   }
 
   .hero-description {
+    font-family: "Montserrat";
     font-size: 12.5px;
+    font-weight: 400 !important;
     line-height: 1.7;
   }
 
   .hero-astrology-content .hero-heading {
+    font-family: "Montserrat";
     font-size: 30px;
+    font-weight: 700;
   }
 
   .hero-astrology-content .hero-description {
+    font-family: "Montserrat";
     font-size: 12px;
+    font-weight: 400 !important;
   }
 
   .hero-subtitle {
+    font-family: "Montserrat";
     font-size: 12px;
   }
 
   .hero-highlight-item {
+    font-family: "Montserrat";
     font-size: 8px;
     padding: 5px 7px;
   }
@@ -937,7 +1014,10 @@
     height: 47px;
 
     padding-left: 15px;
+
+    font-family: "DM Sans", sans-serif;
     font-size: 12px;
+    font-weight: 600;
   }
 
   .hero-cta-icon {
