@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { ArrowRight } from "lucide-react";
 
 import "./Hero.css";
-//import ExploreCircle from "./ExploreCircle";
+// import ExploreCircle from "./ExploreCircle";
 
 import bankbg1 from "../../assets/bankbg1.png";
 import jewelleryImage from "../../assets/jewellary.png";
@@ -15,7 +15,7 @@ import astrologybg from "../../assets/astrologybg.png";
 import astrologybg1 from "../../assets/astrologybg1.png";
 
 const heroSlides = [
-    {
+  {
     id: "jewellery",
     title: "Jewellery",
     heading: "Tradition in Every Design.",
@@ -218,9 +218,8 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Explore Circle 
-        <ExploreCircle href="#about" />
-        */}
+        {/* Explore Circle remains commented out */}
+        {/* <ExploreCircle href="#about" /> */}
       </div>
     </section>
   );
