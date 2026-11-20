@@ -1,326 +1,299 @@
 
-import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-
-import { Star, Quote } from "lucide-react";
-
-import "swiper/css";
-import "swiper/css/pagination";
+import { useRef, useState, useEffect } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 import "./Testimonials.css";
 
-import meetingImage from "../../assets/meeting.png";
+const testimonials = [
+  {
+    id: 1,
+    name: "Sunita Deshmukh",
+    role: "Bride's Mother",
+    initials: "SD",
+    review:
+      "\"Aaradhya Jewellers made my daughter's wedding special. The 'Gold on EMI' scheme was a blessing for us. 100% BIS Hallmark purity and the designs are absolutely stunning. Highly recommended!\"",
+  },
+  {
+    id: 2,
+    name: "Rajesh Verma",
+    role: "Local Business Owner",
+    initials: "RV",
+    review:
+      "\"I have been banking with Aaradhya Credit Cooperative Bank for years. Their 15% interest on FD is the best in the market. Also, their 1.5% gold loan helped me expand my business without any hassle.\"",
+  },
+  {
+    id: 3,
+    name: "Amit Sharma",
+    role: "Client",
+    initials: "AS",
+    review:
+      "\"Falguni Jaiswal ji’s astrological guidance gave me clarity during a tough phase. The free Kundli making and Vastu tips at Aaradhya Jewellers are truly a unique initiative. Thank you for the peace of mind!\"",
+  },
+];
 
-// Add verified customer testimonials here.
-const defaultTestimonials = [];
-
-const panelVariants = {
+const sectionVariants = {
   hidden: {
     opacity: 0,
-    y: 55,
+    y: 45,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
+      duration: 1,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
-const contentVariants = {
+const cardVariants = {
   hidden: {
     opacity: 0,
-    y: 25,
+    x: 75,
+    y: 15,
   },
-  visible: {
+  visible: (index) => ({
     opacity: 1,
+    x: 0,
     y: 0,
     transition: {
-      duration: 0.7,
-      ease: "easeOut",
+      duration: 1.1,
+      delay: index * 0.22,
+      ease: [0.22, 1, 0.36, 1],
     },
-  },
+  }),
 };
 
-const Testimonials = ({
-  reviews = defaultTestimonials,
-  rating = 4.9,
-  reviewCount = 80,
-}) => {
+const Testimonials = () => {
+  const carouselRef = useRef(null);
+  const cardRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(3);
 
-  const hasReviews = reviews.length > 0;
+  const shouldReduceMotion = useReducedMotion();
+
+  // Determine how many cards fit in the current viewport.
+  useEffect(() => {
+    const updateVisibleCards = () => {
+      if (window.innerWidth <= 600) {
+        setVisibleCards(1);
+      } else if (window.innerWidth <= 991) {
+        setVisibleCards(2);
+      } else {
+        setVisibleCards(3);
+      }
+    };
+
+    updateVisibleCards();
+
+    window.addEventListener("resize", updateVisibleCards);
+
+    return () => {
+      window.removeEventListener("resize", updateVisibleCards);
+    };
+  }, []);
+
+  const maxIndex = Math.max(
+    0,
+    testimonials.length - visibleCards
+  );
+
+  const scrollToCard = (index) => {
+    const nextIndex = Math.min(
+      Math.max(index, 0),
+      maxIndex
+    );
+
+    const targetCard = cardRefs.current[nextIndex];
+
+    if (!targetCard || !carouselRef.current) return;
+
+    carouselRef.current.scrollTo({
+      left: targetCard.offsetLeft - carouselRef.current.offsetLeft,
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+    });
+
+    setActiveIndex(nextIndex);
+  };
+
+  const handleScroll = () => {
+    if (!carouselRef.current) return;
+
+    const containerLeft = carouselRef.current.scrollLeft;
+
+    let closestIndex = 0;
+    let smallestDistance = Infinity;
+
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+
+      const distance = Math.abs(card.offsetLeft - containerLeft);
+
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setActiveIndex(Math.min(closestIndex, maxIndex));
+  };
+
+  const handlePrevious = () => {
+    scrollToCard(activeIndex - 1);
+  };
+
+  const handleNext = () => {
+    scrollToCard(activeIndex + 1);
+  };
 
   return (
     <section className="testimonials-section" id="testimonials">
-      <div className="testimonials-grid">
-        {/* LEFT IMAGE CONTAINER */}
+      <div className="testimonials-pattern" aria-hidden="true" />
+
+      <div className="testimonials-container">
+        {/* Section Heading */}
         <motion.div
-          className="testimonial-visual-panel"
-          variants={panelVariants}
+          className="testimonials-heading"
+          variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{
-            once: true,
-            amount: 0.2,
+            once: false,
+            amount: 0.3,
           }}
         >
-          {/* Background Image */}
-          <motion.img
-            src={meetingImage}
-            alt="Professional business collaboration"
-            className="testimonial-background"
-            initial={{
-              scale: 1.12,
-            }}
-            whileInView={{
-              scale: 1,
-            }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1.5,
-              ease: "easeOut",
-            }}
-          />
+          <span className="testimonials-eyebrow">
+            CUSTOMER TESTIMONIALS
+          </span>
 
-          {/* Image Overlay */}
-          <div className="testimonial-image-overlay" />
-
-          {/* Heading Content */}
-          <motion.div
-            className="testimonial-visual-heading"
-            variants={contentVariants}
-          >
-            <span>CLIENT STORIES</span>
-
-            <h2>
-              Hear from Our
-              <br />
-              <span>Customer.</span>
-            </h2>
-
-            <p>
-              Real experiences. Meaningful relationships. Lasting impressions.
-            </p>
-          </motion.div>
-
-          {/* FLOATING RATING BOX */}
-          <motion.div
-            className="testimonial-rating-wrapper"
-            initial={{
-              opacity: 0,
-              x: 70,
-              y: 50,
-              scale: 0.85,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              y: 0,
-              scale: 1,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.3,
-            }}
-            transition={{
-              duration: 1,
-              delay: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            whileHover={{
-              y: -6,
-              transition: {
-                duration: 0.35,
-              },
-            }}
-          >
-            <div className="testimonial-rating-inner">
-              <div className="testimonial-rating-number">{rating}</div>
-
-              <div
-                className="testimonial-rating-stars"
-                aria-label={`${rating} out of 5 stars`}
-              >
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
-                    key={star}
-                    size={19}
-                    fill="currentColor"
-                    strokeWidth={0}
-                  />
-                ))}
-              </div>
-
-              <p className="testimonial-rating-label">
-                ({reviewCount}+ Clients Reviews)
-              </p>
-            </div>
-          </motion.div>
+          <h2>
+            Trusted by Customers,
+            <br />
+            Valued for Excellence
+          </h2>
         </motion.div>
 
-        {/* RIGHT TESTIMONIAL CONTAINER */}
+        {/* Testimonial Cards */}
         <motion.div
-          className="testimonial-content-panel"
-          variants={panelVariants}
+          className="testimonials-carousel-wrapper"
+          variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          transition={{
-            duration: 1,
-            delay: 0.25,
+            once: false,
+            amount: 0.15,
           }}
         >
-          {/* Decorative Quote Icon */}
-          <motion.div
-            className="testimonial-quote-icon"
-            initial={{
-              opacity: 0,
-              rotate: -25,
-              scale: 0.7,
-            }}
-            whileInView={{
-              opacity: 1,
-              rotate: 0,
-              scale: 1,
-            }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.7,
-              delay: 0.5,
-            }}
+          <div
+            className="testimonials-track"
+            ref={carouselRef}
+            onScroll={handleScroll}
           >
-            <Quote size={32} />
-          </motion.div>
+            {testimonials.map((testimonial, index) => (
+              <motion.article
+                key={testimonial.id}
+                ref={(element) => {
+                  cardRefs.current[index] = element;
+                }}
+                className="testimonial-card"
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: false,
+                  amount: 0.25,
+                }}
+                whileHover={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        y: -9,
+                        transition: {
+                          duration: 0.35,
+                          ease: "easeOut",
+                        },
+                      }
+                }
+              >
+                {/* Customer Information */}
+                <div className="testimonial-user">
+                  <div
+                    className={`testimonial-avatar avatar-${index + 1}`}
+                    aria-label={`${testimonial.name} initials`}
+                  >
+                    {testimonial.initials}
+                  </div>
 
-          {/* TESTIMONIAL CAROUSEL */}
-          {hasReviews ? (
-            <Swiper
-              className="testimonial-swiper"
-              modules={[Autoplay, Pagination]}
-              slidesPerView={1}
-              spaceBetween={20}
-              loop={reviews.length > 1}
-              speed={900}
-              autoplay={
-                reviews.length > 1
-                  ? {
-                      delay: 5500,
-                      disableOnInteraction: false,
-                      pauseOnMouseEnter: true,
-                    }
-                  : false
-              }
-              pagination={{
-                clickable: true,
-                el: ".testimonial-pagination",
-              }}
-              onSlideChange={(swiper) => {
-                setActiveIndex(swiper.realIndex);
-              }}
-            >
-              {reviews.map((review, index) => (
-                <SwiperSlide
-                  key={review._id || review.id || index}
+                  <div className="testimonial-user-info">
+                    <h3>{testimonial.name}</h3>
+                    <span>{testimonial.role}</span>
+                  </div>
+                </div>
+
+                {/* Review */}
+                <p className="testimonial-review">
+                  {testimonial.review}
+                </p>
+
+                {/* Rating */}
+                <div
+                  className="testimonial-rating"
+                  aria-label="5 out of 5 stars"
                 >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={review._id || review.id || index}
-                      className="testimonial-slide-content"
-                      initial={{
-                        opacity: 0,
-                        y: 25,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        y: -15,
-                      }}
-                      transition={{
-                        duration: 0.65,
-                      }}
-                    >
-                      <span className="testimonial-slide-number">
-                        CUSTOMER EXPERIENCE / 0{index + 1}
-                      </span>
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      size={17}
+                      fill="currentColor"
+                      strokeWidth={1.5}
+                    />
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
 
-                      {/* Customer Review */}
-                      <blockquote className="testimonial-quote">
-                        {review.content}
-                      </blockquote>
+          {/* Carousel Controls */}
+          <div className="testimonials-controls">
+            <button
+              type="button"
+              className="testimonial-arrow"
+              onClick={handlePrevious}
+              disabled={activeIndex === 0}
+              aria-label="Previous testimonials"
+            >
+              <ChevronLeft size={19} />
+            </button>
 
-                      {/* Divider */}
-                      <div className="testimonial-divider" />
-
-                      {/* Customer Profile */}
-                      <div className="testimonial-author">
-                        {review.avatar ? (
-                          <img
-                            src={review.avatar}
-                            alt={review.name}
-                            className="testimonial-avatar"
-                          />
-                        ) : (
-                          <div className="testimonial-avatar testimonial-avatar-fallback">
-                            {review.name?.charAt(0) || "C"}
-                          </div>
-                        )}
-
-                        <div className="testimonial-author-info">
-                          <h3>{review.name}</h3>
-                          <span>{review.designation}</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </SwiperSlide>
+            <div className="testimonial-pagination">
+              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={`testimonial-dot ${
+                    activeIndex === index ? "active" : ""
+                  }`}
+                  onClick={() => scrollToCard(index)}
+                  aria-label={`Go to testimonial group ${index + 1}`}
+                  aria-current={
+                    activeIndex === index ? "true" : undefined
+                  }
+                />
               ))}
-            </Swiper>
-          ) : (
-            /* Empty State Until Real Reviews Are Added */
-            <div className="testimonial-empty-state">
-              <span>OUR CUSTOMER EXPERIENCES</span>
-
-              <h3>Every great relationship begins with trust.</h3>
-
-              <p>
-                We believe in building lasting relationships through meaningful
-                experiences and exceptional service.
-              </p>
-
-              <div className="testimonial-divider" />
-
-              <div className="testimonial-author">
-                <div className="testimonial-avatar testimonial-avatar-fallback">
-                  A
-                </div>
-
-                <div className="testimonial-author-info">
-                  <h3>Aradhaya Group</h3>
-                  <span>Building Relationships Through Trust</span>
-                </div>
-              </div>
             </div>
-          )}
 
-          {/* Pagination */}
-          {hasReviews && reviews.length > 1 && (
-            <div
-              className="testimonial-pagination"
-              aria-label={`Testimonial ${activeIndex + 1} of ${reviews.length}`}
-            />
-          )}
+            <button
+              type="button"
+              className="testimonial-arrow"
+              onClick={handleNext}
+              disabled={activeIndex >= maxIndex}
+              aria-label="Next testimonials"
+            >
+              <ChevronRight size={19} />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

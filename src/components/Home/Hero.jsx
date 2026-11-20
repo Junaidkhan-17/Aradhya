@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { ArrowRight } from "lucide-react";
 
 import "./Hero.css";
-import ExploreCircle from "./ExploreCircle";
+//import ExploreCircle from "./ExploreCircle";
 
 import bankbg1 from "../../assets/bankbg1.png";
 import jewelleryImage from "../../assets/jewellary.png";
@@ -15,6 +15,18 @@ import astrologybg from "../../assets/astrologybg.png";
 import astrologybg1 from "../../assets/astrologybg1.png";
 
 const heroSlides = [
+    {
+    id: "jewellery",
+    title: "Jewellery",
+    heading: "Tradition in Every Design.",
+    highlight: "Beauty in Every Moment.",
+    description:
+      "Discover gold and silver jewellery featuring traditional and contemporary designs for weddings and special occasions. ARADHYA JEWELLERS brings together skilled craftsmanship, hallmarking and customer-focused service in Nagpur.",
+    image: jewellerbg2,
+    cta: "Explore Collection",
+    eyebrow: "TRADITIONAL CRAFTSMANSHIP, TIMELESS DESIGNS.",
+    path: "/jewellery",
+  },
   {
     id: "banking",
     title: "Bank",
@@ -26,18 +38,6 @@ const heroSlides = [
     cta: "Get Started",
     eyebrow: "BUILDING TRUST, CREATING OPPORTUNITIES.",
     path: "/bank",
-  },
-  {
-    id: "jewellery",
-    title: "Jewellery",
-    heading: "Tradition in Every Design.",
-    highlight: "Beauty in Every Moment.",
-    description:
-      "Discover gold and silver jewellery featuring traditional and contemporary designs for weddings and special occasions. ARADHYA JEWELLERS brings together skilled craftsmanship, hallmarking and customer-focused service in Nagpur.",
-    image: jewellerbg2,
-    cta: "Explore Collection",
-    eyebrow: "TRADITIONAL CRAFTSMANSHIP, TIMELESS DESIGNS.",
-    path: "/jewellery",
   },
   {
     id: "restaurant",
@@ -218,8 +218,9 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Explore Circle */}
+        {/* Explore Circle 
         <ExploreCircle href="#about" />
+        */}
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ import "./index.css";
 
 // Lenis
 import "lenis/dist/lenis.css";
-
+import "./assets/fonts/fonts.css";
 // Swiper
 import "swiper/css";
 import "swiper/css/navigation";

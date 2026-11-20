@@ -1,81 +1,93 @@
 
-/* ===================================
-   FLOATING NAVBAR
-=================================== */
+/* =========================================
+   GLOBAL SMOOTH SCROLL
+========================================= */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* =========================================
+   MAIN NAVBAR
+========================================= */
 
 .floating-navbar {
   position: fixed;
-  top: 24px;
-  left: 2.5%;
-  width: 95%;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1300;
 
   box-sizing: border-box;
-  padding: 0 25px;
+  padding: 0 clamp(24px, 2.7vw, 52px);
 
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 18px;
+  background: transparent !important;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 
-  background: rgba(30, 45, 45, 0.389);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
   transition:
-    background 0.4s ease,
+    padding 0.4s ease,
     box-shadow 0.4s ease,
-    border-color 0.4s ease;
+    transform 0.4s ease;
 }
 
-/* Scrolled State */
+/* Transparent scrolled state */
 
 .floating-navbar.navbar-scrolled {
-  background: rgba(17, 34, 32, 0.408);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
 }
 
 /* Inner Container */
 
 .navbar-inner {
-  min-height: 70px;
+  position: relative;
 
-  display: flex;
+  width: 100%;
+  min-height: 88px;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
 
-  gap: 20px;
+  gap: 25px;
 }
 
-/* ===================================
+/* =========================================
    BRAND LOGO
-=================================== */
+========================================= */
 
 .navbar-brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-self: start;
+
+  width: fit-content;
   flex-shrink: 0;
 
   text-decoration: none;
   outline-offset: 5px;
 }
 
-/* Animated Logo Viewport */
-
 .navbar-logo-rotator {
   position: relative;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
-  width: 150px;
-  height: 76px;
+  width: clamp(130px, 14vw, 175px);
+  height: 75px;
 
   overflow: hidden;
   isolation: isolate;
 }
-
-/* Individual Rotating Logo */
 
 .rotating-navbar-logo {
   position: absolute;
@@ -86,7 +98,7 @@
   height: 100%;
 
   object-fit: contain;
-  object-position: center;
+  object-position: left center;
 
   will-change: transform, opacity, filter;
   transform-origin: center;
@@ -97,16 +109,17 @@
   filter: brightness(1.08);
 }
 
-/* ===================================
+/* =========================================
    DESKTOP NAVIGATION
-=================================== */
+========================================= */
 
 .navbar-navigation {
   display: flex;
   align-items: center;
+  justify-content: center;
 
-  gap: clamp(30px, 5vw, 75px);
-  margin-right: 23%;
+  gap: clamp(30px, 5vw, 70px);
+  justify-self: center;
 }
 
 .navbar-link {
@@ -114,63 +127,199 @@
 
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 
+  gap: 7px;
   padding: 12px 0;
+
+  color: #ffffff;
+
   font-family: "Montserrat";
   font-style: normal;
+  font-size: clamp(14px, 1.15vw, 17px);
   font-weight: 700;
-    color: #fff;
-  font-size: 23px;
 
   text-decoration: none;
   white-space: nowrap;
+
+  cursor: pointer;
 
   transition:
     color 0.3s ease,
     transform 0.3s ease;
 }
 
+.navbar-link:hover,
+.navbar-link.active {
+  color: var(--navbar-accent, #e0bd83);
+}
+
 .navbar-link:hover {
-  color: #e0bd83;
   transform: translateY(-2px);
 }
 
-.navbar-link-indicator {
+/* =========================================
+   OUR BUSINESSES DROPDOWN
+========================================= */
+
+.navbar-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-dropdown-trigger {
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-family: "Montserrat";
+}
+
+.dropdown-chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-chevron-open {
+  transform: rotate(180deg);
+}
+
+.navbar-dropdown-menu {
   position: absolute;
-  bottom: 3px;
-  left: 0;
+  top: calc(100% + 13px);
+  left: 50%;
 
-  width: 0;
-  height: 2px;
+  width: 245px;
+  padding: 10px;
 
-  background: #d5b176;
+  transform: translateX(-50%);
 
-  transition: width 0.35s ease;
+  background: rgba(15, 28, 25, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  z-index: 20;
 }
 
-.navbar-link:hover .navbar-link-indicator,
-.navbar-link.active .navbar-link-indicator {
-  width: 100%;
+.navbar-dropdown-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+  padding: 13px 12px;
+
+  color: #ffffff;
+
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 500;
+
+  text-decoration: none;
+  border-radius: 7px;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    padding 0.25s ease;
 }
 
-.navbar-link.active {
-  color: #e0bd83;
+.navbar-dropdown-link svg {
+  flex-shrink: 0;
+  color: var(--navbar-accent, #e0bd83);
+  transition: transform 0.25s ease;
 }
 
-/* ===================================
+.navbar-dropdown-link:hover,
+.navbar-dropdown-link.active {
+  color: var(--navbar-accent, #e0bd83);
+  background: rgba(255, 255, 255, 0.08);
+  padding-left: 17px;
+}
+
+.navbar-dropdown-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================
+   CONTACT BUTTON
+========================================= */
+
+.navbar-contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  justify-self: end;
+
+  gap: 10px;
+  min-height: 42px;
+  padding: 4px 5px 4px 15px;
+
+  color: #ffffff;
+  background: #2737bd;
+
+  border: none;
+  border-radius: 50px;
+
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.navbar-contact-button:hover {
+  color: #ffffff;
+  background: #18299e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #333333;
+  background: #ffffff;
+
+  border-radius: 50%;
+}
+
+/* =========================================
    MOBILE MENU BUTTON
-=================================== */
+========================================= */
 
 .mobile-menu-button.MuiIconButton-root {
   display: none;
 
   flex-shrink: 0;
-  width: 46px;
-  height: 46px;
+  width: 45px;
+  height: 45px;
 
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 10px;
+
+  background: rgba(0, 0, 0, 0.12);
 
   transition:
     background 0.3s ease,
@@ -180,14 +329,14 @@
 }
 
 .mobile-menu-button.MuiIconButton-root:hover {
-  background: rgba(213, 177, 118, 0.15);
-  color: #e0bd83;
-  border-color: rgba(213, 177, 118, 0.6);
+  color: var(--navbar-accent, #e0bd83);
+  border-color: var(--navbar-accent, #e0bd83);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* ===================================
+/* =========================================
    MOBILE DRAWER
-=================================== */
+========================================= */
 
 .navbar-mobile-drawer.MuiDrawer-paper {
   display: flex;
@@ -202,7 +351,7 @@
 
   padding: 25px;
 
-  color: #fff;
+  color: #ffffff;
   background: #122a25;
 
   overflow-y: auto;
@@ -217,7 +366,7 @@
   justify-content: space-between;
 
   gap: 15px;
-  padding-bottom: 25px;
+  padding-bottom: 22px;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -227,8 +376,6 @@
   align-items: center;
   min-width: 0;
 }
-
-/* Mobile Logo Viewport */
 
 .mobile-logo-rotator {
   width: clamp(110px, 35vw, 130px);
@@ -241,7 +388,7 @@
   width: 44px;
   height: 44px;
 
-  color: #fff;
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
 
@@ -255,10 +402,12 @@
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* Drawer Navigation */
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
 
 .mobile-navigation-list {
-  margin-top: 25px;
+  margin-top: 22px;
   padding: 0;
 }
 
@@ -267,13 +416,14 @@
   align-items: center;
   justify-content: space-between;
 
-  min-height: 58px;
-  padding: 16px 10px;
+  min-height: 56px;
+  padding: 15px 10px;
 
-  color: #000000;
+  color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 
-  font-size: clamp(15px, 4vw, 17px);
+  font-family: "Montserrat";
+  font-size: 15px;
   font-weight: 500;
 
   transition:
@@ -300,107 +450,188 @@
   transform: translate(3px, -3px);
 }
 
-/* Drawer Footer */
+/* Mobile Business Heading */
+
+.mobile-business-heading {
+  padding: 22px 10px 7px;
+
+  color: #d5b176;
+
+  font-family: "Montserrat";
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.mobile-business-link.MuiListItemButton-root {
+  padding-left: 19px;
+}
+
+/* =========================================
+   MOBILE DRAWER FOOTER
+========================================= */
 
 .mobile-drawer-footer {
   margin-top: auto;
-  padding-top: 35px;
-
-  color: #d5b176;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  line-height: 1.7;
+  padding-top: 32px;
 }
 
-/* ===================================
+.mobile-contact-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+  width: 100%;
+  min-height: 47px;
+
+  color: #ffffff;
+  background: #2737bd;
+
+  border-radius: 50px;
+
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.mobile-contact-button:hover {
+  color: #ffffff;
+  background: #18299e;
+  transform: translateY(-2px);
+}
+
+.mobile-drawer-footer p {
+  margin: 22px 0 0;
+
+  color: #d5b176;
+  font-family: "Montserrat";
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.7px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* =========================================
    FOCUS ACCESSIBILITY
-=================================== */
+========================================= */
 
 .navbar-brand:focus-visible,
 .navbar-link:focus-visible,
+.navbar-dropdown-link:focus-visible,
+.navbar-contact-button:focus-visible,
 .mobile-menu-button.MuiIconButton-root:focus-visible,
 .mobile-navigation-link.MuiListItemButton-root:focus-visible {
-  outline: 2px solid #d5b176;
+  outline: 2px solid var(--navbar-accent, #d5b176);
   outline-offset: 4px;
 }
 
-/* ===================================
-   LARGE LAPTOP / SMALL DESKTOP
-=================================== */
+/* =========================================
+   LARGE LAPTOP
+========================================= */
 
 @media (max-width: 1200px) {
+  .navbar-inner {
+    gap: 18px;
+  }
+
   .navbar-navigation {
-    gap: clamp(25px, 3.5vw, 42px);
-    margin-right: 10%;
+    gap: clamp(22px, 3.2vw, 42px);
   }
 
   .navbar-logo-rotator {
-    width: 140px;
+    width: 145px;
+  }
+
+  .navbar-contact-button {
+    font-size: 12px;
   }
 }
 
-/* ===================================
-   TABLET
-=================================== */
+/* =========================================
+   TABLET LANDSCAPE
+========================================= */
 
 @media (max-width: 991px) and (min-width: 769px) {
   .floating-navbar {
-    top: 18px;
-    left: 3%;
-    width: 94%;
-    padding: 0 20px;
+    padding: 0 22px;
   }
 
   .navbar-inner {
-    min-height: 68px;
-    gap: 15px;
+    min-height: 78px;
+    gap: 14px;
   }
 
   .navbar-logo-rotator {
-    width: 125px;
+    width: 120px;
     height: 65px;
   }
 
   .navbar-navigation {
-    gap: 24px;
-    margin-right: 0;
+    gap: 20px;
   }
 
   .navbar-link {
-    font-size: 15px;
-    font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
+    font-size: 13px;
+  }
+
+  .navbar-contact-button {
+    min-height: 38px;
+    gap: 7px;
+    padding-left: 10px;
+    font-size: 10px;
+  }
+
+  .navbar-contact-icon {
+    width: 29px;
+    height: 29px;
   }
 }
 
-/* ===================================
-   MOBILE NAVIGATION
-=================================== */
+/* =========================================
+   TABLET AND MOBILE
+========================================= */
 
 @media (max-width: 768px) {
   .floating-navbar {
-    top: 15px;
-    left: 3%;
-    width: 94%;
-
-    padding: 0 18px;
-    border-radius: 14px;
+    padding: 0 5%;
   }
 
   .navbar-inner {
-    min-height: 68px;
+    min-height: 76px;
+    display: flex;
+    justify-content: space-between;
     gap: 12px;
   }
 
   .navbar-logo-rotator {
-    width: 125px;
-    height: 62px;
+    width: 135px;
+    height: 65px;
   }
 
   .navbar-navigation {
     display: none;
+  }
+
+  .navbar-contact-button {
+    margin-left: auto;
+    min-height: 39px;
+    padding-left: 12px;
+    gap: 7px;
+    font-size: 11px;
+  }
+
+  .navbar-contact-icon {
+    width: 29px;
+    height: 29px;
   }
 
   .mobile-menu-button.MuiIconButton-root {
@@ -408,32 +639,45 @@
   }
 }
 
-/* ===================================
+/* =========================================
    SMALL MOBILE
-=================================== */
+========================================= */
 
 @media (max-width: 480px) {
   .floating-navbar {
-    top: 12px;
-    left: 3%;
-    width: 94%;
-
-    padding: 0 14px;
-    border-radius: 13px;
+    padding: 0 4%;
   }
 
   .navbar-inner {
-    min-height: 62px;
+    min-height: 68px;
+    gap: 9px;
   }
 
   .navbar-logo-rotator {
     width: 112px;
-    height: 56px;
+    height: 58px;
+  }
+
+  .navbar-contact-button {
+    min-height: 36px;
+    padding: 3px 4px 3px 10px;
+    gap: 5px;
+    font-size: 9px;
+  }
+
+  .navbar-contact-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .navbar-contact-icon svg {
+    width: 14px;
+    height: 14px;
   }
 
   .mobile-menu-button.MuiIconButton-root {
-    width: 44px;
-    height: 44px;
+    width: 41px;
+    height: 41px;
   }
 
   .navbar-mobile-drawer.MuiDrawer-paper {
@@ -452,56 +696,47 @@
   .mobile-navigation-list {
     margin-top: 20px;
   }
-
-  .mobile-navigation-link.MuiListItemButton-root {
-    min-height: 56px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-
-  .mobile-drawer-footer {
-    padding-top: 28px;
-    font-size: 9px;
-    letter-spacing: 1.7px;
-  }
 }
 
-/* ===================================
-   VERY SMALL DEVICES
-=================================== */
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
 
 @media (max-width: 360px) {
-  .floating-navbar {
-    top: 10px;
-    padding: 0 11px;
-  }
-
   .navbar-inner {
-    min-height: 58px;
+    min-height: 64px;
+    gap: 6px;
   }
 
   .navbar-logo-rotator {
-    width: 100px;
+    width: 95px;
     height: 52px;
   }
 
+  .navbar-contact-button {
+    min-height: 33px;
+    padding-left: 8px;
+    font-size: 8px;
+  }
+
+  .navbar-contact-icon {
+    width: 24px;
+    height: 24px;
+  }
+
   .mobile-menu-button.MuiIconButton-root {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
   }
 
   .navbar-mobile-drawer.MuiDrawer-paper {
     padding: 17px;
   }
-
-  .mobile-logo-rotator {
-    width: 105px;
-  }
 }
 
-/* ===================================
+/* =========================================
    TOUCH DEVICE FEEDBACK
-=================================== */
+========================================= */
 
 @media (hover: none) {
   .navbar-brand:active .rotating-navbar-logo {
@@ -509,8 +744,8 @@
   }
 
   .mobile-menu-button.MuiIconButton-root:active {
-    background: rgba(213, 177, 118, 0.18);
-    color: #e0bd83;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--navbar-accent, #e0bd83);
   }
 
   .mobile-navigation-link.MuiListItemButton-root:active {
@@ -518,142 +753,24 @@
   }
 }
 
-/* ===================================
+/* =========================================
    REDUCED MOTION
-=================================== */
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .floating-navbar,
   .navbar-brand img,
   .navbar-link,
-  .navbar-link-indicator,
+  .navbar-dropdown-link,
+  .navbar-contact-button,
   .mobile-menu-button.MuiIconButton-root,
   .mobile-navigation-link.MuiListItemButton-root,
   .mobile-navigation-link.MuiListItemButton-root svg {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
-  }
-}
-
-
-/* ===================================
-   DYNAMIC BUSINESS NAVBAR THEME
-=================================== */
-
-/* Floating Navbar */
-
-.floating-navbar {
-  background: var(--navbar-background);
-  border-color: var(--navbar-border);
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
-}
-
-/* Scrolled Navbar */
-
-.floating-navbar.navbar-scrolled {
-  background: var(--navbar-scrolled-background);
-  border-color: var(--navbar-border);
-}
-
-/* Navigation Links */
-
-.navbar-link {
-  color: var(--navbar-text);
-    font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-}
-
-.navbar-link:hover,
-.navbar-link.active {
-  color: var(--navbar-accent);
-}
-
-/* Navigation Indicator */
-
-.navbar-link-indicator {
-  background: var(--navbar-accent);
-}
-
-/* Mobile Menu Button */
-
-.mobile-menu-button.MuiIconButton-root {
-  color: var(--navbar-text);
-  border-color: var(--navbar-border);
-}
-
-.mobile-menu-button.MuiIconButton-root:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--navbar-accent);
-  border-color: var(--navbar-accent);
-}
-
-/* Mobile Drawer */
-
-.navbar-mobile-drawer.MuiDrawer-paper {
-  background: var(--navbar-scrolled-background);
-  color: var(--navbar-text);
-}
-
-/* Drawer Header */
-
-.mobile-drawer-header {
-  border-bottom-color: var(--navbar-border);
-}
-
-.mobile-drawer-header .MuiIconButton-root {
-  color: var(--navbar-text);
-  border-color: var(--navbar-border);
-}
-
-.mobile-drawer-header .MuiIconButton-root:hover {
-  color: var(--navbar-accent);
-}
-
-/* Mobile Navigation Links */
-
-.mobile-navigation-link.MuiListItemButton-root {
-  color: var(--navbar-text);
-  border-bottom-color: var(--navbar-border);
-}
-
-.mobile-navigation-link.MuiListItemButton-root svg {
-  color: var(--navbar-accent);
-}
-
-.mobile-navigation-link.MuiListItemButton-root:hover,
-.mobile-navigation-link.MuiListItemButton-root[aria-current="page"] {
-  color: var(--navbar-accent);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Drawer Footer */
-
-.mobile-drawer-footer {
-  color: var(--navbar-accent);
-}
-
-/* Focus Accessibility */
-
-.navbar-brand:focus-visible,
-.navbar-link:focus-visible,
-.mobile-menu-button.MuiIconButton-root:focus-visible,
-.mobile-navigation-link.MuiListItemButton-root:focus-visible {
-  outline-color: var(--navbar-accent);
-}
-
-/* Touch Device Feedback */
-
-@media (hover: none) {
-  .mobile-menu-button.MuiIconButton-root:active {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--navbar-accent);
-  }
-
-  .mobile-navigation-link.MuiListItemButton-root:active {
-    background: rgba(255, 255, 255, 0.12);
   }
 }

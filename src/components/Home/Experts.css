@@ -1,0 +1,455 @@
+
+/* =========================================
+   EXPERTS SECTION
+========================================= */
+
+.experts-section {
+  position: relative;
+  width: 100%;
+  padding: 65px 0 75px;
+  overflow: hidden;
+
+  background: #ffffff;
+  color: #081a3b;
+}
+
+.experts-container {
+  width: min(1055px, 84%);
+  margin: 0 auto;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.experts-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 52px;
+  text-align: center;
+}
+
+.experts-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 4px 21px;
+
+  border: 1px solid rgba(62, 49, 255, 0.22);
+  border-radius: 30px;
+
+  color: #3100a0;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.experts-heading h2 {
+  display: flex;
+  flex-direction: column;
+
+  margin: 17px 0 0;
+
+  color: #081a3b;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(34px, 3.2vw, 50px);
+  font-weight: 650;
+  line-height: 1.17;
+  letter-spacing: -1.1px;
+}
+
+.experts-heading h2 span {
+  color: #3100a0;
+}
+
+/* =========================================
+   EXPERT CARDS GRID
+========================================= */
+
+.experts-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr 1fr;
+
+  align-items: start;
+  gap: 45px;
+
+  width: 100%;
+}
+
+/* =========================================
+   EXPERT CARD
+========================================= */
+
+.expert-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+
+  border-radius: 10px;
+
+  transition:
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.expert-card-large {
+  --expert-image-height: 390px;
+}
+
+.expert-card-standard {
+  --expert-image-height: 350px;
+}
+
+.expert-card:hover {
+  box-shadow: 0 22px 45px rgba(24, 12, 74, 0.12);
+}
+
+/* =========================================
+   EXPERT IMAGE
+========================================= */
+
+.expert-image-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: var(--expert-image-height);
+
+  overflow: hidden;
+
+  border-radius: 9px;
+
+  background: #efedf5;
+}
+
+.expert-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center top;
+
+  transition:
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s ease;
+}
+
+.expert-card:hover .expert-image {
+  transform: scale(1.055);
+  filter: saturate(1.08);
+}
+
+.expert-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    rgba(7, 10, 30, 0.12) 100%
+  );
+
+  opacity: 0.65;
+
+  transition: opacity 0.5s ease;
+}
+
+.expert-card:hover .expert-image-overlay {
+  opacity: 1;
+}
+
+/* =========================================
+   EXPERT INFORMATION
+========================================= */
+
+.expert-info {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: calc(100% - 32px);
+  min-height: 82px;
+
+  margin-top: -35px;
+  padding: 17px 10px 0;
+  border-radius: 9px 9px 9px 9px;
+
+  background: #ffffff;
+
+  text-align: center;
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.expert-card:hover .expert-info {
+  transform: translateY(-5px);
+  box-shadow: 0 -8px 22px rgba(20, 8, 65, 0.06);
+}
+
+.expert-info h3 {
+  margin: 0 0 10px;
+
+  color: #081a3b;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.expert-role {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 27px;
+  padding: 5px 12px;
+
+  border-radius: 5px;
+
+  background: #090039;
+  color: #ffffff;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  transition:
+    background 0.35s ease,
+    transform 0.35s ease;
+}
+
+.expert-card:hover .expert-role {
+  background: #3100a0;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1440px) {
+  .experts-container {
+    width: min(1150px, 82%);
+  }
+
+  .experts-grid {
+    gap: 50px;
+  }
+
+  .expert-card-large {
+    --expert-image-height: 420px;
+  }
+
+  .expert-card-standard {
+    --expert-image-height: 380px;
+  }
+}
+
+/* =========================================
+   LAPTOP
+========================================= */
+
+@media (max-width: 1200px) {
+  .experts-container {
+    width: 88%;
+  }
+
+  .experts-grid {
+    gap: 30px;
+  }
+
+  .expert-card-large {
+    --expert-image-height: 365px;
+  }
+
+  .expert-card-standard {
+    --expert-image-height: 335px;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+  .experts-section {
+    padding: 60px 0 65px;
+  }
+
+  .experts-container {
+    width: 88%;
+  }
+
+  .experts-heading {
+    margin-bottom: 42px;
+  }
+
+  .experts-heading h2 {
+    font-size: clamp(30px, 4.5vw, 38px);
+  }
+
+  .experts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 25px;
+  }
+
+  .expert-card-large {
+    --expert-image-height: 370px;
+  }
+
+  .expert-card-standard {
+    --expert-image-height: 340px;
+  }
+
+  .expert-card:last-child {
+    grid-column: 1 / -1;
+    width: calc(50% - 12.5px);
+    justify-self: center;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .experts-section {
+    padding: 55px 0 50px;
+  }
+
+  .experts-container {
+    width: 88%;
+  }
+
+  .experts-heading {
+    margin-bottom: 35px;
+  }
+
+  .experts-eyebrow {
+    padding: 5px 15px;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .experts-heading h2 {
+    margin-top: 15px;
+
+    font-size: clamp(25px, 7vw, 34px);
+    line-height: 1.25;
+    letter-spacing: -0.7px;
+  }
+
+  .experts-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .expert-card-large,
+  .expert-card-standard {
+    --expert-image-height: auto;
+  }
+
+  .expert-image-wrapper {
+    height: auto;
+    aspect-ratio: 0.92 / 1;
+  }
+
+  .expert-card-large .expert-image-wrapper {
+    aspect-ratio: 0.95 / 1;
+  }
+
+  .expert-card-standard .expert-image-wrapper {
+    aspect-ratio: 0.95 / 1;
+  }
+
+  .expert-info {
+    width: calc(100% - 35px);
+    min-height: 82px;
+
+    margin-top: -30px;
+    padding: 15px 10px 0;
+  }
+
+  .expert-info h3 {
+    margin-bottom: 9px;
+    font-size: 17px;
+  }
+
+  .expert-role {
+    min-height: 30px;
+    padding: 6px 13px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 375px) {
+  .experts-container {
+    width: 90%;
+  }
+
+  .experts-section {
+    padding: 48px 0 45px;
+  }
+
+  .experts-heading h2 {
+    font-size: 26px;
+  }
+
+  .experts-grid {
+    gap: 27px;
+  }
+
+  .expert-info h3 {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICE FEEDBACK
+========================================= */
+
+@media (hover: none) {
+  .expert-card:active .expert-image {
+    transform: scale(1.025);
+  }
+
+  .expert-card:active .expert-role {
+    background: #3100a0;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .expert-image,
+  .expert-image-overlay,
+  .expert-info,
+  .expert-role {
+    transition-duration: 0.01ms !important;
+  }
+}

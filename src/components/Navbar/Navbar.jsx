@@ -10,7 +10,13 @@ import {
   ListItemButton,
 } from "@mui/material";
 
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  ChevronDown,
+  Phone,
+} from "lucide-react";
 
 import "./Navbar.css";
 
@@ -19,7 +25,10 @@ import {
   navigationItems,
 } from "./navbarConfig";
 
-// Reusable animated business logo
+const CONTACT_NUMBER = "+919372221118";
+const CONTACT_DISPLAY = "+91 93722 21118";
+
+// Animated business logo
 const LogoRotator = ({ logo, label, mobile = false }) => {
   return (
     <div
@@ -36,9 +45,9 @@ const LogoRotator = ({ logo, label, mobile = false }) => {
           className="rotating-navbar-logo"
           initial={{
             opacity: 0,
-            y: 28,
-            scale: 1.15,
-            filter: "blur(4px)",
+            y: 18,
+            scale: 0.94,
+            filter: "blur(3px)",
           }}
           animate={{
             opacity: 1,
@@ -48,12 +57,12 @@ const LogoRotator = ({ logo, label, mobile = false }) => {
           }}
           exit={{
             opacity: 0,
-            y: -28,
-            scale: 0.92,
-            filter: "blur(3px)",
+            y: -12,
+            scale: 0.96,
+            filter: "blur(2px)",
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.65,
             ease: [0.22, 1, 0.36, 1],
           }}
         />
@@ -64,27 +73,23 @@ const LogoRotator = ({ logo, label, mobile = false }) => {
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [businessMenuOpen, setBusinessMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
 
-  // Get the correct business configuration for the current route
+  // Current business logo and accent
   const currentConfig = getNavbarConfig(location.pathname);
   const currentTheme = currentConfig.theme;
 
-  // Shared theme variables for navbar and mobile drawer
   const navbarStyle = {
-    "--navbar-background": currentTheme.background,
-    "--navbar-scrolled-background": currentTheme.scrolledBackground,
-    "--navbar-text": currentTheme.text,
     "--navbar-accent": currentTheme.accent,
-    "--navbar-border": currentTheme.border,
   };
 
-  // Detect page scroll
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 20);
     };
 
     handleScroll();
@@ -98,15 +103,20 @@ const Navbar = () => {
     };
   }, []);
 
-  // Close mobile menu after navigation
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
-  // Close drawer whenever the route changes
+  // Close menus after route changes
   useEffect(() => {
     setMenuOpen(false);
+    setBusinessMenuOpen(false);
   }, [location.pathname]);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setBusinessMenuOpen(false);
+  };
+
+  const toggleBusinessMenu = () => {
+    setBusinessMenuOpen((prev) => !prev);
+  };
 
   return (
     <>
@@ -115,15 +125,16 @@ const Navbar = () => {
           isScrolled ? "navbar-scrolled" : ""
         }`}
         style={navbarStyle}
-        initial={{ opacity: 0, y: -35 }}
+        initial={{ opacity: 0, y: -25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.9,
-          delay: 0.2,
+          duration: 0.8,
+          delay: 0.15,
           ease: [0.22, 1, 0.36, 1],
         }}
       >
         <div className="navbar-inner">
+
           {/* Brand Logo */}
           <NavLink
             to="/"
@@ -142,28 +153,91 @@ const Navbar = () => {
             className="navbar-navigation"
             aria-label="Main navigation"
           >
-            {navigationItems.map((item, index) => (
-              <motion.div
-                key={item.path}
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.4 + index * 0.15,
-                }}
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `navbar-link ${isActive ? "active" : ""}`
+              }
+            >
+              Home
+            </NavLink>
+
+            {/* Businesses Dropdown */}
+            <div className="navbar-dropdown">
+              <button
+                type="button"
+                className={`navbar-link navbar-dropdown-trigger ${
+                  navigationItems.some(
+                    (item) => location.pathname === item.path ||
+                    location.pathname.startsWith(`${item.path}/`)
+                  )
+                    ? "active"
+                    : ""
+                }`}
+                aria-expanded={businessMenuOpen}
+                aria-haspopup="true"
+                onClick={toggleBusinessMenu}
               >
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `navbar-link ${isActive ? "active" : ""}`
-                  }
-                >
-                  {item.label}
-                  <span className="navbar-link-indicator" />
-                </NavLink>
-              </motion.div>
-            ))}
+                Our Businesses
+                <ChevronDown
+                  size={15}
+                  className={`dropdown-chevron ${
+                    businessMenuOpen ? "dropdown-chevron-open" : ""
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {businessMenuOpen && (
+                  <motion.div
+                    className="navbar-dropdown-menu"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.22 }}
+                  >
+                    {navigationItems.map((item) => (
+                      <NavLink
+                        key={item.path}
+                        to={item.path}
+                        className={({ isActive }) =>
+                          `navbar-dropdown-link ${
+                            isActive ? "active" : ""
+                          }`
+                        }
+                        onClick={closeMenu}
+                      >
+                        <span>{item.label}</span>
+                        <ArrowUpRight size={16} />
+                      </NavLink>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `navbar-link ${isActive ? "active" : ""}`
+              }
+            >
+              About Us
+            </NavLink>
           </nav>
+
+          {/* Contact Button */}
+          <a
+            href={`tel:${CONTACT_NUMBER}`}
+            className="navbar-contact-button"
+            aria-label={`Call ${CONTACT_DISPLAY}`}
+          >
+            <span>{CONTACT_DISPLAY}</span>
+            <span className="navbar-contact-icon">
+              <Phone size={17} fill="currentColor" />
+            </span>
+          </a>
 
           {/* Mobile Menu Button */}
           <IconButton
@@ -173,11 +247,7 @@ const Navbar = () => {
             aria-controls="navbar-mobile-drawer"
             onClick={() => setMenuOpen((prev) => !prev)}
           >
-            {menuOpen ? (
-              <X size={25} />
-            ) : (
-              <Menu size={25} />
-            )}
+            {menuOpen ? <X size={25} /> : <Menu size={25} />}
           </IconButton>
         </div>
       </motion.header>
@@ -193,7 +263,6 @@ const Navbar = () => {
         PaperProps={{
           id: "navbar-mobile-drawer",
           className: "navbar-mobile-drawer",
-          style: navbarStyle,
         }}
       >
         <div className="mobile-drawer-header">
@@ -219,32 +288,77 @@ const Navbar = () => {
 
         <nav aria-label="Mobile navigation">
           <List className="mobile-navigation-list">
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              <ListItemButton
+                component={NavLink}
+                to="/"
+                end
+                onClick={closeMenu}
+                className="mobile-navigation-link"
+              >
+                <span>Home</span>
+                <ArrowUpRight size={19} />
+              </ListItemButton>
+            </motion.div>
+
+            <div className="mobile-business-heading">
+              Our Businesses
+            </div>
+
             {navigationItems.map((item, index) => (
               <motion.div
                 key={item.path}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.4,
-                  delay: index * 0.1,
+                  duration: 0.35,
+                  delay: index * 0.07,
                 }}
               >
                 <ListItemButton
                   component={NavLink}
                   to={item.path}
                   onClick={closeMenu}
-                  className="mobile-navigation-link"
+                  className="mobile-navigation-link mobile-business-link"
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight size={19} />
                 </ListItemButton>
               </motion.div>
             ))}
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.35, delay: 0.4 }}
+            >
+              <ListItemButton
+                component={NavLink}
+                to="/about"
+                onClick={closeMenu}
+                className="mobile-navigation-link"
+              >
+                <span>About Us</span>
+                <ArrowUpRight size={19} />
+              </ListItemButton>
+            </motion.div>
           </List>
         </nav>
 
         <div className="mobile-drawer-footer">
-          ARADHYA GROUP OF BUSINESS
+          <a
+            href={`tel:${CONTACT_NUMBER}`}
+            className="mobile-contact-button"
+          >
+            <Phone size={17} />
+            <span>{CONTACT_DISPLAY}</span>
+          </a>
+
+          <p>ARADHYA GROUP OF BUSINESS</p>
         </div>
       </Drawer>
     </>

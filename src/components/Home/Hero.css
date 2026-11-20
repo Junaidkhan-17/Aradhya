@@ -6,7 +6,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 120vh;
+  min-height: 100vh;
 
   overflow: hidden;
 
@@ -66,13 +66,10 @@
 .hero-content-wrapper {
   position: relative;
   z-index: 2;
-  margin-top: -250px;
+  margin-top: -50px;
   width: 100%;
   min-height: 100vh;
-
-
   padding: 50px 6.4% 55px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -120,15 +117,14 @@
 
 .hero-heading {
   margin: 0;
-
   color: #ffffff;
   font-family: "Montserrat";
   font-display: swap;
-  font-size: clamp(35px, 7vw, 80px);
-  font-weight: 700;
+  font-size: clamp(35px, 7vw, 45px);
+  font-weight: 600;
+  font-style: normal;
   line-height: 1.04;
-  letter-spacing: -4px;
-
+  letter-spacing: 1px;
   overflow-wrap: break-word;
 }
 
@@ -147,7 +143,8 @@
   color: #e4c58e;
   font-family: "Montserrat";
   font-size: clamp(16px, 1.6vw, 22px);
-  font-weight: 500;
+  font-weight: 700;
+  font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.3px;
 }
@@ -164,9 +161,9 @@
   font-family: "Montserrat";
   color: rgba(255, 255, 255, 0.76);
   font-style: normal;
-  font-size: 27px;
-  font-weight: 400 !important;
-  line-height: 1.65;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
   letter-spacing: 1px;
 }
 
@@ -321,7 +318,6 @@
 
 .hero-thumbnail {
   position: relative;
-
   width: 82px;
   height: 82px;
   min-width: 82px;
